@@ -4,10 +4,10 @@ import CompanyDescription from '../components/CompanyDescription';
 import Footer from '../components/Footer';
 function Home() {
   return (
-    <div classNmae="container">
-     <CompanyDescription />
-     <Footer />
+    <div className="container">
+      <CompanyDescription />
+      <Footer />
     </div>
-  );
+  )
 }
 export default Home;
