@@ -4,7 +4,7 @@ import CompanyDescription from '../components/CompanyDescription';
 import Footer from '../components/Footer';
 function Home() {
   return (
-    <div classNmae="container">
+    <div className="container">
      <CompanyDescription />
      <Footer />
     </div>

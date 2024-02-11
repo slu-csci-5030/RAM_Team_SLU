@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import LoginModal from '../LoginModal.jsx';
 import App from '../../App.jsx';
 
 test('displays login popup when login button is clicked', async () => {
