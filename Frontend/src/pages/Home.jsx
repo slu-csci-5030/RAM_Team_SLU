@@ -8,6 +8,6 @@ function Home() {
      <CompanyDescription />
      <Footer />
     </div>
-  );
+  )
 }
 export default Home;
