@@ -15,14 +15,14 @@ function LoginModal({ onClose }) {
   };
 
   return (
-    <div className="modal">
+    <div className="modal" placeholder="modal">
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
         <h2>Login</h2>
         <form onSubmit={handleLoginSubmit}>
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          <button type="submit">Login</button>
+          <button type="submit" placeholder="login">Login</button>
         </form>
       </div>
     </div>
