@@ -27,7 +27,7 @@ function Header() {
 
   return (
     <header className="header">
-        <h1>Research Asset Tracking</h1>
+        <h1 data-testid="project_name">Research Asset Tracking</h1>
       
       <nav className="nav">
         <ul>
