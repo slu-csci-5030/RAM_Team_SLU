@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import LoginModal from './LoginModal';
 import SignUpModal from './SignUpmodal';
-import '../assets/Styles/Header.css';
+// import '../assets/Styles/Header.css';
 
 
 function Header() {
@@ -32,8 +32,8 @@ function Header() {
       <nav className="nav">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><button className='Button' onClick={handleSignUpClick}>Sign Up</button></li>
-          <li><button className='Button'onClick={handleLoginClick}>Login</button></li>
+          <li><button className='Button' onClick={handleSignUpClick} data-testid='sign-up-button'>Sign Up</button></li>
+          <li><button className='Button'onClick={handleLoginClick} data-testid='login-button'>Login</button></li>
         </ul>
       </nav>
       
