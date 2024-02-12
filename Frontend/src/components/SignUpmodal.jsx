@@ -16,10 +16,10 @@ function SignUpModal({ onClose }) {
   };
 
   return (
-    <div className="modal">
+    <div className="modal" PlaceholderText="signup_modal">
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
-        <h2>Sign Up</h2>
+        <h2>Sign Up</h2> 
         <form onSubmit={handleSignUpSubmit}>
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
