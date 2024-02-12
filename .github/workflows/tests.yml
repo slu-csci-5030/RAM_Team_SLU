@@ -23,7 +23,6 @@ jobs:
 
       - name: Build Docker image
         run: |
-          cd RAM_Team_SLU
           docker build -t krishnani/my-app1 .
 
       - name: Log in to Docker Hub
