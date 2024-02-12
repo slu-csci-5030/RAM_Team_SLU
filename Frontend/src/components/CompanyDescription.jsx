@@ -39,16 +39,16 @@ function CompanyDescription() {
           <h2>Contact Us</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>Name:</label>
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+              <label htmlFor='name'>Name:</label>
+              <input  id='name' type="text" value={name} onChange={(e) => setName(e.target.value)} />
             </div>
             <div className="form-group">
-              <label>Email:</label>
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <label htmlFor="email" >Email:</label>
+              <input  id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="form-group">
-              <label>Message:</label>
-              <textarea value={message} onChange={(e) => setMessage(e.target.value)} />
+              <label  htmlFor="message">Message:</label>
+              <textarea id="message" value={message} onChange={(e) => setMessage(e.target.value)} />
             </div>
             <button type="submit">Submit</button>
           </form>
