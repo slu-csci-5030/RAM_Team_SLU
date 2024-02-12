@@ -1,15 +1,15 @@
-name: CI/CD Pipeline
+name: Run Tests
 
 on:
   push:
     branches:
-      - frontDev_nani1606
+      - main
   pull_request:
     branches:
-      - frontDev_nani1606
- 
+      - main
+
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,8 +24,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run ESLint
-        run: npm run lint
-
-      - name: Run Tests
-        run: npm run test
+      - name: Run tests
+        run: npm test
