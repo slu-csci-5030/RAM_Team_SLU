@@ -1,4 +1,3 @@
-// LoginModal.js
 import React, { useState } from 'react';
 import '../assets/Styles/Modal.css';
 
@@ -15,7 +14,7 @@ function LoginModal({ onClose }) {
   };
 
   return (
-    <div className="modal">
+    <div className="modal" placeholder="modal">
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
         <h2>Login</h2>
