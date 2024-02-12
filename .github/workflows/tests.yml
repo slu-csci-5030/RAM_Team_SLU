@@ -18,8 +18,10 @@ jobs:
         with:
           node-version: '20'
 
-      - name: NPM instal
-        run: npm install
+      - name: Install dependencies
+        run: |
+          cd RAM_Team_SLU 
+          npm install
 
       - name: Run tests
         run: npx run test
