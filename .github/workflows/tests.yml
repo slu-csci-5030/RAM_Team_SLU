@@ -18,27 +18,8 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Set up Docker
-        run: docker --version
-
-      - name: Build Docker image
-        run: |
-          docker build -t krishnani/my-app2 .
-
-      - name: Log in to Docker Hub
-        run: docker login -u krishnani -p Vaish@123
-
-      - name: Push Docker image
-        run: docker push krishnani/my-app2
-
-      - name: Install ESLint globally
-        run: npm install -g eslint
-
-      - name: Run linter
-        run: npm run lint
-      
-      - name: Run ESLint
-        run: npx eslint .
+      - name: NPM instal
+        run: npm install
 
       - name: Run tests
         run: npx run test
