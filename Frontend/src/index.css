@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 *{
   padding: 0px;
   margin: 0px;
 }
 
 :root {
+=======
+/* :root {
+>>>>>>> 3d8def69a1457163d7205fc1f255d14e93b03ec1
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -70,4 +74,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
