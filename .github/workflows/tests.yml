@@ -24,4 +24,6 @@ jobs:
           npm install
 
       - name: Run tests
-        run: npx run test
+        run: |
+          cd Frontend
+          npm run test
