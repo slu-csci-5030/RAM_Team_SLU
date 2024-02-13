@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import LoginModal from './LoginModal';
 import SignUpModal from './SignUpmodal';
-// import '../assets/Styles/Header.css';
+import '../assets/Styles/Header.css';
 
 
 function Header() {

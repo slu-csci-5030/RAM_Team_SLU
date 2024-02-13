@@ -1,10 +1,13 @@
 import { PORT } from "./config.js";
 import express from "express";
-const app = express();
+import assetRouter from './asset/asset_router.js'
+const app = express()
 
-app.get("/", (req, res) => {
-	res.send("<h1>Hello, RAM Team!</h1>");
-});
+app.get('/', (req, res) => {
+  res.send('<h1>Hello, RAM Team!</h1>')
+})
+
+app.use('/asset', assetRouter)
 
 app.listen(PORT, () => {
 	console.log(`Example app listening on port ${PORT}`);
