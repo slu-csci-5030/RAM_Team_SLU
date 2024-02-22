@@ -15,3 +15,19 @@ test('displays login popup when login button is clicked', async () => {
     expect(modal).toBeTruthy();
   });
 });
+test('displays sign up modal when sign up button is clicked', async () => {
+    render(<App />);
+    // Find the Sign up button and click it
+    const signupbutton = screen.getByRole('button', { name: /sign up/i });
+    fireEvent.click(signupbutton);
+    // Wait for the modal to appear
+    await waitFor(() => {
+      const modal = screen.getByPlaceholderText('signup_modal') || screen.getByRole('dialog');
+      expect(modal).toBeTruthy();
+    });
+  });
+  test('renders header text', () => {
+    render(<App />);
+    const researchAssetTracking = screen.getAllByTestId('project_title');
+    expect(researchAssetTracking).toBeTruthy();
+  });
