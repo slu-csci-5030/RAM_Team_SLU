@@ -6,7 +6,7 @@ function Home() {
   return (
     <body>
       <CompanyDescription />
-      {/* <Footer /> */}
+      <Footer />
     </body>
   )
 }
