@@ -19,13 +19,14 @@ function SignUpModal({ onClose }) {
     <div className="modal">
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
-        <h2>Sign Up</h2>
+        <h2>Request Access</h2>
         <form onSubmit={handleSignUpSubmit}>
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          {/* <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
           <input type="text" placeholder="Full Name" value={fullName} onChange={(e) => setFullName(e.target.value)} />
-          <input type="tel" placeholder="Phone Number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-          <button type="submit">Sign Up</button>
+          <input type="tel" placeholder="Phone Number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} /> */}
+          <textarea placeholder="Description" value={fullName} onChange={(e) => setFullName(e.target.value)} rows={1} cols={30} />
+          <button type="submit">Submit</button>
         </form>
       </div>
     </div>

@@ -26,13 +26,18 @@
   background-color: #fff;
 }
 .login__container button {
-  background-color: #4CAF50;
+  background-color: #565657;
   color: #fff;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 40px;
+}
+
+.login__container button:hover{
+  background-color: #04a4de
+
 }
 .request__access {
   margin-top: 10px;
@@ -53,4 +58,18 @@
 .login__heading {
   margin-bottom: 25px;
   font-size: 24px;
+}
+
+#support {
+  
+  display: block; 
+  margin-top: 10px; 
+  color: white 
+  font-size 30px;
+  font-weight: bold;
+}
+
+#support:hover {
+
+  color: white; /* Change color on hover */
 }

@@ -1,8 +1,32 @@
 
 import React, { useState } from 'react';
 import '../assets/Styles/CompanyDescription.css';
+import SignUpModal from './SignUpmodal';
+import LoginModal from './LoginModal';
+
 
 function CompanyDescription() {
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const openSignUpModal = () => {
+    setShowSignUpModal(true);
+  };
+
+  const closeSignUpModal = () => {
+    setShowSignUpModal(false);
+  };
+
+
+  const openLoginModal = () => {
+    setShowLoginModal(true);
+  };
+
+  const closeLoginModal = () => {
+    setShowLoginModal(false);
+  };
+ 
+
   return (
     <div className='login__outer__container'>
     <div className="login__container">
@@ -10,13 +34,18 @@ function CompanyDescription() {
       <input type="email" placeholder="Email" />
       <input type="password" placeholder="Password" />
       <div className="password__container">
-          <a href="#" className="forgot__password__link">Forgot password?</a>
+         <a href="#" onClick={openLoginModal}>Forgot password?</a>
       </div>
       <button>Login</button>
       <div className="request__access">
-        <a href="#">Request access?</a>
+      <a href="#" onClick={openSignUpModal}>Request access?</a>
       </div>
+      
+      <a href="https://ask.slu.edu/TDClient/30/Portal/Home/" id="support" target="_blank" rel="noopener noreferrer">IT Support</a>
     </div>
+ 
+    {showSignUpModal && <SignUpModal onClose={() => setShowSignUpModal(false)} />}
+    {showLoginModal && <LoginModal onClose={closeLoginModal} />}
     </div>
   );
 }
