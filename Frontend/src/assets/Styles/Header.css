@@ -4,7 +4,7 @@
     background: #003da5;
     height: 4rem;
     overflow: hidden;
-    z-index: auto;
+    z-index: 10;
     left: 0;
     width: 100%;
 }
