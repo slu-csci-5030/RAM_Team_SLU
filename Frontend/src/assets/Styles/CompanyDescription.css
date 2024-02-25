@@ -43,6 +43,7 @@
   text-align: center;
 }
 .password__container {
+  text-align: right;
   position: relative;
   width: 100%;
 }
