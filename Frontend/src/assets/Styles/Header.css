@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     background: #003da5;
-    height: 4rem;
+    height: 5rem;
     overflow: hidden;
     z-index: 10;
     left: 0;
@@ -22,16 +22,35 @@
     font-family: brandon-grotesque,sans-serif;
     color: #fff;
     font-size: 20px;
-    margin-top: 18px;
+    margin-top: 25px;
     float: left;
 }
 
 .header__menu__group{
     float: right;
-    margin-top: 18px;
+    margin-top: 25px;
 }
 
 .header__icon{
     color: #fff;
     font-size: 24px;
 }
+
+@keyframes MyDiv {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-40px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .logo {
+    position: relative;
+    animation: MyDiv 3s infinite ease-in;
+    animation-direction: normal;
+  }
+  
