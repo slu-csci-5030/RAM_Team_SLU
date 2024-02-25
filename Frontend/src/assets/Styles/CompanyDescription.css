@@ -25,11 +25,6 @@
   border-radius: 5px;
   background-color: #fff;
 }
-.request__access {
-  margin-top: 10px;
-  text-align: center;
-}
-
 .login__container button {
   background-color: #565657;
   color: #fff;
@@ -42,6 +37,23 @@
 
 .login__container button:hover{
   background-color: #04a4de
+
+}
+.request__access {
+  margin-top: 10px;
+  text-align: center;
+}
+.password__container {
+  text-align: right;
+  position: relative;
+  width: 100%;
+}
+.forgot__password__link {
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  transform: translateY(-50%);
+  font-size: 14px;
 }
 
 .login__heading {
@@ -49,4 +61,16 @@
   font-size: 24px;
 }
 
+#support {
+  
+  display: block; 
+  margin-top: 10px; 
+  color: white 
+  font-size 30px;
+  font-weight: bold;
+}
 
+#support:hover {
+
+  color: white; /* on hover */
+}
