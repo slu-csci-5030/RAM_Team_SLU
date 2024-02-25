@@ -34,6 +34,9 @@ function CompanyDescription() {
       <input type="email" placeholder="Email" />
       <input type="password" placeholder="Password" />
       <button>Login</button>
+      <div className="request__access">
+      <a href="#" onClick={openSignUpModal}>Request access?</a>
+      </div>
     </div>
  
     {showSignUpModal && <SignUpModal onClose={() => setShowSignUpModal(false)} />}
