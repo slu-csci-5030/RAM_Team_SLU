@@ -6,6 +6,25 @@ import LoginModal from './LoginModal';
 
 
 function CompanyDescription() {
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const openSignUpModal = () => {
+    setShowSignUpModal(true);
+  };
+
+  const closeSignUpModal = () => {
+    setShowSignUpModal(false);
+  };
+
+
+  const openLoginModal = () => {
+    setShowLoginModal(true);
+  };
+
+  const closeLoginModal = () => {
+    setShowLoginModal(false);
+  };
  
 
   return (
@@ -15,13 +34,16 @@ function CompanyDescription() {
       <input type="email" placeholder="Email" />
       <input type="password" placeholder="Password" />
       <div className="password__container">
-         <a href="#">Forgot password?</a>
+         <a href="#" onClick={openLoginModal}>Forgot password?</a>
       </div>
       <button>Login</button>
       <div className="request__access">
-      <a href="#">Request access?</a>
+      <a href="#" onClick={openSignUpModal}>Request access?</a>
       </div>
     </div>
+ 
+    {showSignUpModal && <SignUpModal onClose={() => setShowSignUpModal(false)} />}
+    {showLoginModal && <LoginModal onClose={closeLoginModal} />}
     </div>
   );
 }
