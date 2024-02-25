@@ -14,7 +14,8 @@
 }
 
 .modal-content {
-    background: linear-gradient(135deg, #3c4051, #538795);
+    /* background:linear-gradient(135deg, #3c4051, #538795); */
+    background:#003da5;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
@@ -47,36 +48,43 @@
 .modal input[type="password"],
 .modal input[type="text"],
 .modal input[type="tel"],
+.modal textarea,
 .modal button {
     display: block;
     margin: 10px auto; 
-    width: calc(100% - 24px); /* Adjusted width to account for padding */
+    width: calc(100% - 24px); 
     padding: 12px;
     border-radius: 5px;
     border: none;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
     max-width: 100%;
-    font-size: 16px; /* Adjust font size */
+    font-size: 16px; 
 }
 
 .modal input[type="email"],
 .modal input[type="password"],
 .modal input[type="text"],
-.modal input[type="tel"] {
+.modal input[type="tel"]
+ {
     width: calc(93% - 24px);
 }
 
+.modal textarea {
+    height: 120px; 
+    width: calc(93% - 24px); 
+}
+
 .modal button {
-    background-color: #4CAF50;
+    background-color: #575756;
     color: #fff;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    font-size: 16px; /* Adjust font size */
+    font-size: 16px; 
 }
 
 .modal button:hover {
-    background-color: #45a049;
+    background-color:#04a4de;
 }
