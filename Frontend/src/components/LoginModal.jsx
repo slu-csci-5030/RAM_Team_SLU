@@ -19,8 +19,9 @@ function LoginModal({ onClose }) {
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
         <h2>Forgot Password</h2>
+        <h4 classname="header">Please enter your Email/Username</h4>
         <form onSubmit={handleLoginSubmit}>
-          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="email" placeholder="abc@email.com" value={email} onChange={(e) => setEmail(e.target.value)} />
           <button type="submit">Submit</button>
         </form>
       </div>

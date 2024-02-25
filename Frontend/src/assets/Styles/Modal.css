@@ -44,6 +44,19 @@
     margin-bottom: 20px;
 }
 
+.modal h4 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.header {
+    margin-right: 10px !important;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
 .modal input[type="email"],
 .modal input[type="password"],
 .modal input[type="text"],
