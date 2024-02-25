@@ -65,12 +65,12 @@
   
   display: block; 
   margin-top: 10px; 
-  color: white 
-  font-size 30px;
+  color: rgb(213, 203, 203);
+  font-size :30px;
   font-weight: bold;
 }
 
 #support:hover {
 
-  color: white; /* on hover */
+  color: rgb(210, 206, 206); /* on hover */
 }
