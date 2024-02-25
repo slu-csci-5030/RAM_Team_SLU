@@ -15,6 +15,7 @@
   align-items: center;
   width: 300px;
 }
+
 .login__container input[type="email"],
 .login__container input[type="password"] {
   width: 100%;
@@ -25,7 +26,23 @@
   background-color: #fff;
 }
 
+.login__container button {
+  background-color: #565657;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 40px;
+}
 
+.login__container button:hover{
+  background-color: #04a4de
+}
 
+.login__heading {
+  margin-bottom: 25px;
+  font-size: 24px;
+}
 
 
