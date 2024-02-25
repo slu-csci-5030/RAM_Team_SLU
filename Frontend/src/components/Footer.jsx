@@ -27,8 +27,8 @@ function Footer() {
           <h2>Quick Links</h2>
           <ul>
             <li><a href="#">↑ Back to top</a></li>
-            <li><a href="https://www.slu.edu/">SLU Homepage</a></li>
-            <li><a href="https://myslu.slu.edu/">mySLU</a></li>
+            <li><a href="https://www.slu.edu/" target="_blank" >SLU Homepage</a></li>
+            <li><a href="https://myslu.slu.edu/" target="_blank">mySLU</a></li>
           </ul>
         </div>
       </div>
