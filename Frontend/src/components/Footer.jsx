@@ -14,10 +14,7 @@ function Footer() {
           </div>
           <div className="about-description">
             <p>
-              Research Asset tracking tool made easy.
-            </p>
-            <p>
-              Address: 123 Main Street, City, Country
+              Saint Louis University's research asset management tool helps you organize and keep track of the school's research assets.
             </p>
           </div>
         </div>
@@ -29,14 +26,15 @@ function Footer() {
         <div className="footer-section links">
           <h2>Quick Links</h2>
           <ul>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Twitter</a></li>
-            <li><a href="#">Instagram</a></li>
+            <li><a href="#">↑ Back to top</a></li>
+            <li><a href="https://www.slu.edu/" target="_blank" >SLU Homepage</a></li>
+            <li><a href="https://myslu.slu.edu/" target="_blank">mySLU</a></li>
           </ul>
         </div>
       </div>
       <div className="footer-bottom">
-        &copy; 2024 Company Name. All rights reserved.
+        <p>&copy; 2024 Saint Louis University. All rights reserved.</p>
+        <p>&copy; 2024 Okta, Inc. All rights reserved.</p>
       </div>
     </footer>
   );
