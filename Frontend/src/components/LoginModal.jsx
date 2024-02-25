@@ -4,25 +4,16 @@ import '../assets/Styles/Modal.css';
 
 
 function LoginModal({ onClose }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    
-    console.log('Login form submitted with email:', email, 'and password:', password);
-    onClose();
-  };
+  
 
   return (
     <div className="modal">
       <div className="modal-content">
-        <span className="close" onClick={onClose}>&times;</span>
-        <h2>Login</h2>
-        <form onSubmit={handleLoginSubmit}>
-          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          <button type="submit">Login</button>
+        <span className="close" >&times;</span>
+        <h2>Forgot Password</h2>
+        <form >
+          <input type="email" placeholder="Email" value={email}  />
+          <button type="submit">Submit</button>
         </form>
       </div>
     </div>
