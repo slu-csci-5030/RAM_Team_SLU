@@ -70,3 +70,16 @@
     margin-bottom: 10px; 
   }
   
+  .footer__sub-section{
+    margin-left: 35%;
+  }
+
+  .bind__flex{
+    display: flex;;
+  }
+
+  .social__media{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
