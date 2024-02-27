@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding-top: 5rem;
 }
 
 .login__container {
@@ -65,9 +66,6 @@
   
   display: block; 
   margin-top: 10px; 
-  color: rgb(213, 203, 203);
-  font-size :30px;
-  font-weight: bold;
 }
 
 #support:hover {
