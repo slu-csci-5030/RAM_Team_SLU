@@ -44,6 +44,19 @@
     margin-bottom: 20px;
 }
 
+.modal h4 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.header {
+    margin-right: 10px !important;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
 .modal input[type="email"],
 .modal input[type="password"],
 .modal input[type="text"],
@@ -86,5 +99,13 @@
 }
 
 .modal button:hover {
-    background-color:#04a4de;
+    background-color:#de6604;
 }
+.otp-message {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+  }
