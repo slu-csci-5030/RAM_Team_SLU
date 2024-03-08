@@ -24,3 +24,23 @@ Currently, two official plugins are available:
 
 # **6. Footer + Styling:**
    The footer serves as a valuable resource for users, offering essential information and navigation options. Styled with a background color of ***#575756***, at the bottom of the page. Divided into three sections, the footer includes *details about the webpage*, *contact information*, and *useful links redirecting users to the main site page of the university*. This comprehensive footer ensures users have access to important resources and can navigate the platform with ease.
+   
+# March 08 2024
+
+This time, our focus is on designing the home page with various functionalities such as asset management, universal search, and setting up the login route.
+
+**Home Page Design:**
+
+1. **Search Bar:** Positioned centrally on the homepage, the search bar allows users to search for assets easily.
+
+2. **Add Asset Button:** Located on the right side of the page in a ***green color***, the "Add Asset" button triggers a pop-up window when clicked. This pop-up window allows users to input asset details such as asset name, location, and asset number. It also includes a submit button at the center bottom and a close button at the upper right corner.
+
+3. **Asset List/Table:** Displayed on the main home screen, this list/table showcases asset details including *serial number*, *asset name*, *quantity*, and *location*. Additionally, it provides options for editing ***(green - 4CAF50)*** and deleting ***(red - #f44336)*** assets.
+
+**Functionality:**
+
+1. **Asset Management:** Users can manage assets by adding new assets through the pop-up window triggered by the *"Add Asset"* button. They can also view and edit existing assets directly from the asset list/table.
+
+2. **Universal Search:** The search bar facilitates easy searching for assets by allowing users to input keywords or asset details.
+
+3. **Login Route Setup:** The home page serves as the landing page after successful login, providing access to the asset management functionalities.
