@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import CompanyDescription from '../components/CompanyDescription';
-import EditAsset from '../components/EditAsset';
 
 function Home() {
   const history = useHistory();
@@ -13,7 +12,6 @@ function Home() {
   return (
     <body>
       <CompanyDescription onLoginButtonClick={handleLoginButtonClick} />
-      <EditAsset />
     </body>
   );
 }
