@@ -5,9 +5,9 @@ import '../assets/Styles/UniversalSearch.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import DepartmentFilter from './DepartmentFilter';
-import AdminFilter from './AdminFilter';
-import AllFilters from './AllFilters';
+// import DepartmentFilter from './DepartmentFilter';
+// import AdminFilter from './AdminFilter';
+// import AllFilters from './AllFilters';
 
 function UniversalSearch() {
   return (
