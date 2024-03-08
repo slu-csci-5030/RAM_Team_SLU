@@ -18,3 +18,15 @@
   }
   
   
+  .universal-search button {
+    background-color: #003da5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  
+  .universal-search button:hover {
+    background-color: #002a73;
+  }
