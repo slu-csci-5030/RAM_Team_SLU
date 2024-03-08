@@ -1,5 +1,5 @@
 import React from 'react';
-//import '../assets/Styles/EditAsset.css';
+import '../assets/Styles/EditAsset.css';
 
 function EditAsset({ asset, onEdit, onSave }) {
   const handleChange = (e) => {
