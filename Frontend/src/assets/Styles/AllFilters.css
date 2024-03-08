@@ -1,0 +1,13 @@
+.all-filters button {
+    background-color: #ddd;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  
+  .all-filters button:hover {
+    background-color: #bbb;
+  }
+  
