@@ -11,8 +11,40 @@ function AssetManagement() {
   const [editIndex, setEditIndex] = useState(null);
   const [editedAsset, setEditedAsset] = useState({});
   const [showEditModal, setShowEditModal] = useState(false);
-  
+  useEffect(() => {
+    const storedAssets = localStorage.getItem('assets');
+    if (storedAssets) {
+      setAssets(JSON.parse(storedAssets));
+    }
+  }, []);
 
+  const handleAddAsset = (newAsset) => {
+    setAssets([...assets, newAsset]);
+    localStorage.setItem('assets', JSON.stringify([...assets, newAsset]));
+  };
+
+  const handleEditAsset = (index) => {
+    setEditIndex(index);
+    setEditedAsset(assets[index]);
+    setShowEditModal(true);
+  };
+
+  const handleSaveEdit = () => {
+    const updatedAssets = [...assets];
+    updatedAssets[editIndex] = editedAsset;
+    setAssets(updatedAssets);
+    setEditIndex(null);
+    setEditedAsset({});
+    localStorage.setItem('assets', JSON.stringify(updatedAssets));
+    setShowEditModal(false);
+  };
+
+  const handleDeleteAsset = (index) => {
+    const updatedAssets = assets.filter((_, i) => i !== index);
+    setAssets(updatedAssets);
+    localStorage.setItem('assets', JSON.stringify(updatedAssets));
+  };
+  
 
 
   return (
