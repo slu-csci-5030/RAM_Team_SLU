@@ -1,5 +1,5 @@
 import React from 'react';
-//import '../assets/Styles/EditAsset.css';
+import '../assets/Styles/EditAsset.css';
 
 function EditAsset({ asset, onEdit, onSave }) {
   const handleChange = (e) => {
@@ -13,21 +13,21 @@ function EditAsset({ asset, onEdit, onSave }) {
         <input
           type="text"
           name="assetName"
-          value={asset.assetName}
+          // value={asset.assetName}
           onChange={handleChange}
           className="edit-asset-input"
         />
         <input
           type="text"
           name="location"
-          value={asset.location}
+          // value={asset.location}
           onChange={handleChange}
           className="edit-asset-input"
         />
         <input
           type="text"
           name="quantity"
-          value={asset.quantity}
+          // value={asset.quantity}
           onChange={handleChange}
           className="edit-asset-input"
         />
