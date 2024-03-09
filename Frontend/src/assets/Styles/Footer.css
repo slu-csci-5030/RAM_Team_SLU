@@ -1,9 +1,7 @@
 .footer {
 	background-color: #575756;
 	color: #fff;
-	position: absolute;
-	width: 100%;
-	bottom: 0;
+	padding: 15px 0;
 }
 
 .footer-content {
@@ -43,6 +41,8 @@
 
 .footer-bottom {
 	text-align: center;
+	margin-top: 20px;
+	padding-top: 20px;
 	border-top: 1px solid #777;
 }
 
@@ -78,6 +78,6 @@
 	margin-right: 10px;
 }
 .copyright {
-	/* padding-top: 10px; */
+	padding-top: 10px;
 	border-top: 1px solid #d5d5d5;
 }
