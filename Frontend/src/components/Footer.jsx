@@ -40,4 +40,5 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default Footer; 
+//worked with Leandru on this file
