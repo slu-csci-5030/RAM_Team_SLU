@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../assets/Styles/CompanyDescription.css';
-import SignUpModal from './SignUpModal';
+import SignUpModal from './SignUpmodal';
 import LoginModal from './LoginModal';
  
 function CompanyDescription({ onLoginButtonClick }) {
