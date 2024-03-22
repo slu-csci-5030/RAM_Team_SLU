@@ -81,3 +81,12 @@ a {
 a:hover{
   text-decoration: underline;
 }
+
+p.error {
+  color: red;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  padding-left: 30px;
+  margin: 0 0 10px 0;
+}
