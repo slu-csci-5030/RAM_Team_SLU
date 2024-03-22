@@ -44,6 +44,9 @@
   margin-top: 10px;
   text-align: center;
 }
+.request__access a{
+  font-weight: bold;
+}
 .password__container {
   text-align: right;
   position: relative;

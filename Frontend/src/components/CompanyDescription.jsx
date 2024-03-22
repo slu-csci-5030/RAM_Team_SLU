@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../assets/Styles/CompanyDescription.css';
-import SignUpModal from './SignUpmodal';
+import SignUpModal from './SignUpModal';
 import LoginModal from './LoginModal';
  
 function CompanyDescription({ onLoginButtonClick }) {
@@ -34,7 +34,8 @@ function CompanyDescription({ onLoginButtonClick }) {
 </div>
 <button onClick={onLoginButtonClick}>Login</button> {/* Call onLoginButtonClick */}
 <div className="request__access">
-<a href="#" onClick={openSignUpModal}>Request access?</a>
+Don&apos;t have an account?&nbsp;
+<a href="#" onClick={openSignUpModal}>Sign up</a>
 </div>
 <a href="https://ask.slu.edu/TDClient/30/Portal/Home/" id="support" target="_blank" rel="noopener noreferrer">IT Support</a>
 </div>
