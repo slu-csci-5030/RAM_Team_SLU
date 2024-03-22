@@ -13,6 +13,7 @@ userRouter.post("/login", async (req, res) => {
 			req.body.Email,
 			req.body.Password
 		);
+		const token = await user.generateAuthToken();
 		res.send(user);
 	} catch (error) {
 		console.log(error.message);
@@ -41,6 +42,7 @@ userRouter.post("/signup", async (req, res) => {
 		};
 
 		const user = await userModel.create(newUser);
+		const token = await user.generateAuthToken();
 		return res.status(200).send(user);
 	} catch (error) {
 		console.log(error.message);

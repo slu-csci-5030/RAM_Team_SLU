@@ -8,6 +8,10 @@ import cors from "cors";
 
 const app = express();
 
+// app.use((req, res, next) => {
+// 	res.status(503).send({ message: "Site Under maintainance!" });
+// });
+
 app.use(express.json());
 
 app.use("/Assets/equipments", equipmentRouter);
