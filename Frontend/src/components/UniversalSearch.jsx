@@ -74,34 +74,3 @@ function UniversalSearch({ onSearch }) {
 }
 
 export default UniversalSearch;
-// return (
-//   <div>
-//     <div className="universal-search">
-//       <input type="text" placeholder="Search for assets..." value={selectedFilter} onChange={handleInputChange} />
-//       <button><FontAwesomeIcon icon={faSearch} /></button>
-//     </div>
-//     <div className="centered-button">
-//       <button onClick={toggleFilters}>{showFilters ? 'Hide Filters' : 'Show Filters'}</button>
-//     </div>
-//     {showFilters && (
-//       <div className="filter-popup">
-//         <ul className="filter-list">
-//           {filters.map((filter, index) => (
-//             <li key={index} onClick={() => handleFilterSelection(filter.name)}>
-//               {filter.name}
-//               {filterDropdowns[filter.name] && (
-//                 <ul className="dropdown-menu">
-//                   {filter.items.map((item, idx) => (
-//                     <li key={idx}>{item}</li>
-//                   ))}
-//                 </ul>
-//               )}
-//             </li>
-//           ))}
-//         </ul>
-//       </div>
-//     )}
-//      {/* Empty div for spacing */}
-//   </div>
-// );}
-// export default UniversalSearch;
