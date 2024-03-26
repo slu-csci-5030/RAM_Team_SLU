@@ -70,7 +70,7 @@ router.route('/:category/:id').post(async (req, res) => {
   id = parseInt(id)
 
   // Get asset and update
-  let asset = getAsset(category, id, req.body)
+  let asset = getAsset(category, id)
   if (asset) {
     try {
       // TODO: Here we will use the database component to update the asset in the database.
