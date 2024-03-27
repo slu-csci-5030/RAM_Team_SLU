@@ -3,6 +3,8 @@
 const express = require('express');
 const router = express.Router();
 const Asset = require('../models/asset');
+const Asset = require('../models/assetModel');
+
 
 // Get a single asset by ID
 router.get('/:id', getAsset, (req, res) => {
