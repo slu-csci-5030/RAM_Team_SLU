@@ -73,6 +73,8 @@ router.route('/:category/:id').post(async (req, res) => {
   }
   id = parseInt(id)
 
+  // TODO: add validation for JSON. It seems like that has to be done in index.js as a try-catch for the JSON middleware.
+
   // Get asset and update
   let asset = getAsset(category, id)
   if (asset) {
