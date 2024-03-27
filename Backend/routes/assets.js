@@ -64,10 +64,12 @@ router.route('/:category/:id').post(async (req, res) => {
   let category = req.params.category
   if (!validateCategory(category)) {
     res.status(400).send('Invalid category name.')
+    return
   }
   let id = req.params.id
   if (!validateAssetId(id)) {
-    res.status(400).send('Invalid asset ID.')
+    res.status(400).send('Invalid asset ID. Asset ID must be a number.')
+    return
   }
   id = parseInt(id)
 
