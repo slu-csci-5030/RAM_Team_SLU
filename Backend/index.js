@@ -1,3 +1,4 @@
+//deleteasset
 import { PORT } from "./config.js";
 import express from "express";
 import mongoose from "mongoose";
