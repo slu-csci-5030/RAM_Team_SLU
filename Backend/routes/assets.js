@@ -61,9 +61,11 @@ function getAsset(category, id) {
 
 router.route('/:category/:id').post(async (req, res) => {
   // Validate category and ID
+  let category = req.params.category
   if (!validateCategory(category)) {
     res.status(400).send('Invalid category name.')
   }
+  let id = req.params.id
   if (!validateAssetId(id)) {
     res.status(400).send('Invalid asset ID.')
   }
