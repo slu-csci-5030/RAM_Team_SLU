@@ -102,6 +102,7 @@ function AssetManagement() {
       {showEditModal && (
         <EditAsset asset={editedAsset} onEdit={setEditedAsset} onSave={handleSaveEdit} />
       )}
+
     </div>
   );
 }

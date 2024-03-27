@@ -5,12 +5,26 @@ import '../assets/Styles/Modal.css';
 
 function LoginModal({ onClose }) {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({
+    email: ''
+  });
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
+    const newErrors = {};
+    if (!email) {
+      newErrors.email = "Email is required";
+    }
+
+    // Update errors state
+    setErrors(newErrors);
+
+    // If there are any errors, stop form submission
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
     
-    console.log('Login form submitted with email:', email, 'and password:', password);
+    console.log('Login form submitted with email:', email);
     onClose();
   };
 
@@ -20,7 +34,13 @@ function LoginModal({ onClose }) {
         <span className="close" onClick={onClose}>&times;</span>
         <h2>Forgot Password</h2>
         <form onSubmit={handleLoginSubmit}>
-          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {errors.email && <p className="error">{errors.email}</p>}
           <button type="submit">Submit</button>
         </form>
       </div>
