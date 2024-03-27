@@ -61,3 +61,53 @@ const Asset = mongoose.model('Asset', assetSchema);
 // Middleware to parse JSON
 app.use(express.json());
 
+// Route to add a new asset
+app.post("/assets", async (req, res) => {
+    try {
+        // Extract data from request body
+        const { name, description, additionalName, codedIn, contacts, dataInput, dataOutput, addresses, url, developedBy, inventoryNumber, manufacturers, modelNumber, feeForService, protocol, restrictions, serviceFeeUrl, algorithm, operatingSystem, licence, purpose, version, subType, startDate, finishDate, trainingAvailable, contactOrganisation, contactEmail } = req.body;
+ 
+        // Create a new asset document
+        const asset = new Asset({
+            name,
+            description,
+            additionalName,
+            codedIn,
+            contacts,
+            dataInput,
+            dataOutput,
+            addresses,
+            url,
+            developedBy,
+            inventoryNumber,
+            manufacturers,
+            modelNumber,
+            feeForService,
+            protocol,
+            restrictions,
+            serviceFeeUrl,
+            algorithm,
+            operatingSystem,
+            licence,
+            purpose,
+            version,
+            subType,
+            startDate,
+            finishDate,
+            trainingAvailable,
+            contactOrganisation,
+            contactEmail
+        });
+ 
+        // Save the asset document to the database
+        await asset.save();
+ 
+        // Respond with the saved asset
+        res.status(201).json(asset);
+    } catch (error) {
+        // Handle errors
+        console.error("Error saving asset:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+ 
