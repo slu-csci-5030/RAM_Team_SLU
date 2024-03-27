@@ -1,3 +1,4 @@
+/* Universal search container */
 .universal-search {
 	margin-top: 80px;
 	padding: 10px;
@@ -5,47 +6,55 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-
-.universal-search input[type="text"] {
+  }
+  
+  /* Search input */
+  .universal-search input[type="text"] {
 	padding: 8px;
 	width: 300px;
 	border: none;
 	border-radius: 5px;
 	margin-right: 10px;
 	border: 2px solid #003da5;
-}
-
-.universal-search button {
+  }
+  
+  /* Search button */
+  .universal-search button {
 	background-color: #003da5;
 	color: white;
 	border: none;
 	border-radius: 5px;
 	padding: 8px 12px;
 	cursor: pointer;
-}
-
-.universal-search button:hover {
+  }
+  
+  /* Search button hover effect */
+  .universal-search button:hover {
 	background-color: #002a73;
-}
-
-.centered-button {
+  }
+  
+  /* Filter container */
+  .centered-button {
 	display: flex;
 	justify-content: center;
   }
-
+  
+  /* Filter popup */
   .filter-popup {
 	display: flex;
-	justify-content: center;
+	justify-content: center; 
   }
   
+  /* Filter list */
   .filter-list {
 	list-style-type: none;
-	display: flex;
+	display: flex; 
+	padding: 0;
+	margin: 0;
   }
   
+  /* Filter list item */
   .filter-list li {
-	/* margin-right: 20px;  */
 	margin: 10px;
 	padding: 5px 10px;
 	border: 1px solid #ccc;
@@ -53,10 +62,37 @@
 	cursor: pointer;
   }
   
+  /* Filter list item hover effect */
   .filter-list li:hover {
 	background-color: #f0f0f0;
   }
   
+  /* Checkbox list */
+  .checkbox-list {
+	list-style-type: none;
+	padding: 0;
+	border: 2px solid #ccc; 
+	border-radius: 5px; 
+	margin-top: 10px; 
+	padding: 10px; 
+  }
+  
+  /* Checkbox list item */
+  .checkbox-list li {
+	margin: 5px 0;
+  }
+  
+  /* Checkbox label */
+  .checkbox-list label {
+	display: block;
+  }
+  
+  /* Checkbox input */
+  .checkbox-list input[type="checkbox"] {
+	margin-right: 5px;
+  }
+  
+  /* Dropdown menu */
   .dropdown-menu {
 	display: none;
 	padding: 0;
@@ -64,20 +100,20 @@
 	list-style-type: none;
   }
   
+  /* Show dropdown menu on hover */
   .filter-list li:hover .dropdown-menu {
 	display: block;
 	position: absolute;
 	border-top: none;
 	width: auto; 
   }
-
+  
+  /* Dropdown menu item */
   .dropdown-menu li {
 	padding: 4px 8px;
   }
   
+  /* Dropdown menu item hover effect */
   .dropdown-menu li:hover {
 	background-color: #f0f0f0;
   }
-
-
-  
