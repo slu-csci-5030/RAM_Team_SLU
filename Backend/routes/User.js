@@ -1,11 +1,12 @@
 import express, { response } from "express";
 import userModel from "../models/user.js";
+import auth from "../middleware/auth.js";
 
 const userRouter = express.Router();
 
-// userRouter.get("/me", (req, res) => {
-// 	return res.status(200).send(req.user);
-// });
+userRouter.get("/me", auth, (req, res) => {
+	res.status(200).send(req.user);
+});
 
 userRouter.post("/login", async (req, res) => {
 	try {
@@ -44,14 +45,6 @@ userRouter.post("/signup", async (req, res) => {
 		const user = await userModel.create(newUser);
 		const token = await user.generateAuthToken();
 		return res.status(200).send(user);
-	} catch (error) {
-		console.log(error.message);
-		res.status(500).send({ message: error.message });
-	}
-});
-
-userRouter.post("/login", (req, res) => {
-	try {
 	} catch (error) {
 		console.log(error.message);
 		res.status(500).send({ message: error.message });
