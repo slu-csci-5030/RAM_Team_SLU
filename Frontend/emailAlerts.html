@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Alert to Admins</title>
+</head>
+<body>
+    <h2>Send Email Alert to Admin</h2>
+    <form id="emailAlertForm">
+        <div>
+            <label for="emailSubject">Subject:</label>
+            <input type="text" id="emailSubject" name="subject" required>
+        </div>
+        <div>
+            <label for="emailMessage">Message:</label>
+            <textarea id="emailMessage" name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit">Send Alert</button>
+    </form>
+ 
+    <script src="emailAlert.js"></script>
+</body>
+</html>
