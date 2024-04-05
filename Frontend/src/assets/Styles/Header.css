@@ -3,6 +3,7 @@
     top: 0;
     background: #003da5;
     height: 5rem;
+    overflow: hidden;
     z-index: 10;
     left: 0;
     width: 100%;
@@ -26,7 +27,6 @@
 }
  
 .header__menu__group{
-    position: relative;
     float: right;
     margin-top: 25px;
 }
@@ -52,36 +52,35 @@
     position: relative;
     animation: MyDiv 3s infinite ease-in;
     animation-direction: normal;
-  }
-
-  .account-dropdown {
+  } 
+  .dropdown {
     position: absolute;
-    top: 100%;
-    right: -16px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
+    top: 60px; 
+    right: 0;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 100;
+  }
+  
+  .dropdown-item {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 100px;
-    margin-top: 10px;
-    border-radius: 10px;
-    box-shadow: 0 3px 6px 0 rgba(0,0,0,.16);
-  }
-
-  .account-dropdown-triangle {
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #fff;
-    position: absolute;
-    top: -10px;
-    right: 16px;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #ddd; 
   }
   
-  .account-dropdown-content {
-    text-align: center;
+  .dropdown-item:last-child {
+    border-bottom: none; 
   }
   
+  .dropdown-item:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .dropdown-icon {
+    margin-right: 10px; 
+  }
