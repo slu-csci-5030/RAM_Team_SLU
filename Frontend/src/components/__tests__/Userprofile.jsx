@@ -17,6 +17,7 @@ function UserProfile() {
 
   const fetchUserProfile = () => {
     // Replace this with actual API call to retrieve user profile data
+    // For example:
     fetch("/api/user/profile")
       .then((response) => response.json())
       .then((data) => {
