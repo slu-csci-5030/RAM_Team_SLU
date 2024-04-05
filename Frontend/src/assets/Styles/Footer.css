@@ -1,90 +1,83 @@
-
-
 .footer {
-  background-color: #575756;
-    color: #fff;
-    padding: 15px 0;
-  }
-  
-  .footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  
-  .footer-section {
-    width: 30%;
-    padding: 20px;
-  }
-  
-  .footer-section h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .footer-section p {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .footer-section ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-section ul li {
-    margin-bottom: 0px;
-  }
-  
+	background-color: #575756;
+	color: #fff;
+	padding: 15px 0;
+}
 
-  .footer-section ul li a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .footer-bottom {
-    text-align: center;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #777;
-  }
-  
-  
- 
+.footer-content {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.footer-section {
+	width: 30%;
+	padding: 20px;
+}
+
+.footer-section h2 {
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+.footer-section p {
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+
+.footer-section ul {
+	list-style: none;
+	padding: 0;
+}
+
+.footer-section ul li {
+	margin-bottom: 0px;
+}
+
+.footer-section ul li a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.footer-bottom {
+	text-align: center;
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid #777;
+}
 
 .about-logo {
-    text-align: left; 
-  }
-  
-  .about-logo img {
-    width: 80px; 
-  }
-  
-  .about-description {
-    margin-top: 10px; 
-  }
-  
-  .about-description p {
-    font-size: 14px;
-    color: #ccc; 
-    margin-bottom: 10px; 
-  }
-  
-  .footer__sub-section{
-    margin-left: 35%;
-  }
+	text-align: left;
+}
 
-  .bind__flex{
-    display: flex;;
-  }
+.about-logo img {
+	width: 80px;
+}
 
-  .social__media{
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-  }
-  .copyright{
-    padding-top: 10px;
-    border-top: 1px solid #d5d5d5;
-  }
-  
+.about-description {
+	margin-top: 10px;
+}
+
+.about-description p {
+	font-size: 14px;
+	color: #ccc;
+	margin-bottom: 10px;
+}
+
+.footer__sub-section {
+	margin-left: 35%;
+}
+
+.bind__flex {
+	display: flex;
+}
+
+.social__media {
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+.copyright {
+	padding-top: 10px;
+	border-top: 1px solid #d5d5d5;
+}

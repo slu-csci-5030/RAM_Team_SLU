@@ -1,32 +1,83 @@
 .universal-search {
-    margin-top: 60px; 
-    padding: 10px;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
+	margin-top: 80px;
+	padding: 10px;
+	background-color: #ffffff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.universal-search input[type="text"] {
+	padding: 8px;
+	width: 300px;
+	border: none;
+	border-radius: 5px;
+	margin-right: 10px;
+	border: 2px solid #003da5;
+}
+
+.universal-search button {
+	background-color: #003da5;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 8px 12px;
+	cursor: pointer;
+}
+
+.universal-search button:hover {
+	background-color: #002a73;
+}
+
+.centered-button {
+	display: flex;
+	justify-content: center;
+  }
+
+  .filter-popup {
+	display: flex;
+	justify-content: center;
   }
   
-  .universal-search input[type="text"] {
-    padding: 8px;
-    width: 300px;
-    border: none;
-    border-radius: 5px;
-    margin-right: 10px;
-    border: 2px solid #003da5; 
+  .filter-list {
+	list-style-type: none;
+	display: flex;
   }
   
-  
-  .universal-search button {
-    background-color: #003da5;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 12px;
-    cursor: pointer;
+  .filter-list li {
+	/* margin-right: 20px;  */
+	margin: 10px;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	cursor: pointer;
   }
   
-  .universal-search button:hover {
-    background-color: #002a73;
+  .filter-list li:hover {
+	background-color: #f0f0f0;
   }
+  
+  .dropdown-menu {
+	display: none;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+  }
+  
+  .filter-list li:hover .dropdown-menu {
+	display: block;
+	position: absolute;
+	border-top: none;
+	width: auto; 
+  }
+
+  .dropdown-menu li {
+	padding: 4px 8px;
+  }
+  
+  .dropdown-menu li:hover {
+	background-color: #f0f0f0;
+  }
+
+
+  
