@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../assets/Styles/UniversalSearch.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Modal, Button } from 'react-bootstrap';
 
 function UniversalSearch({ onSearch }) {
   const [showFilters, setShowFilters] = useState(false);
@@ -43,38 +44,38 @@ function UniversalSearch({ onSearch }) {
   };
 
   const handleCheckboxChange = (filterName, item) => {
+    let updatedSelectedItems;
     switch (filterName) {
       case 'Asset Category':
-        setSelectedCategories(prevCategories =>
-          prevCategories.includes(item)
-            ? prevCategories.filter(category => category !== item)
-            : [...prevCategories, item]
-        );
+        updatedSelectedItems = selectedCategories.includes(item)
+          ? selectedCategories.filter(category => category !== item)
+          : [...selectedCategories, item];
+        setSelectedCategories(updatedSelectedItems);
         break;
       case 'Department':
-        setSelectedDepartments(prevDepartments =>
-          prevDepartments.includes(item)
-            ? prevDepartments.filter(department => department !== item)
-            : [...prevDepartments, item]
-        );
+        updatedSelectedItems = selectedDepartments.includes(item)
+          ? selectedDepartments.filter(department => department !== item)
+          : [...selectedDepartments, item];
+        setSelectedDepartments(updatedSelectedItems);
         break;
       case 'Location':
-        setSelectedLocations(prevLocations =>
-          prevLocations.includes(item)
-            ? prevLocations.filter(location => location !== item)
-            : [...prevLocations, item]
-        );
+        updatedSelectedItems = selectedLocations.includes(item)
+          ? selectedLocations.filter(location => location !== item)
+          : [...selectedLocations, item];
+        setSelectedLocations(updatedSelectedItems);
         break;
       case 'Asset Manufacturer':
-        setSelectedManufacturers(prevManufacturers =>
-          prevManufacturers.includes(item)
-            ? prevManufacturers.filter(manufacturer => manufacturer !== item)
-            : [...prevManufacturers, item]
-        );
+        updatedSelectedItems = selectedManufacturers.includes(item)
+          ? selectedManufacturers.filter(manufacturer => manufacturer !== item)
+          : [...selectedManufacturers, item];
+        setSelectedManufacturers(updatedSelectedItems);
         break;
       default:
         break;
     }
+
+    // Update the search bar with selected filters
+    setSelectedFilter(updatedSelectedItems.join(', '));
   };
 
   return (
@@ -84,14 +85,18 @@ function UniversalSearch({ onSearch }) {
         <button onClick={handleSearchButtonClick}><FontAwesomeIcon icon={faSearch} /></button>
       </div>
       <div className="centered-button">
-        <button onClick={toggleFilters}>{showFilters ? 'Hide Filters' : 'Show Filters'}</button>
+        <button onClick={toggleFilters}>Show Filters</button>
       </div>
-      {showFilters && (
-        <div className="filter-popup">
+      <Modal show={showFilters} onHide={toggleFilters} className="custom-modal">
+        {/* <Modal.Header closeButton>
+          <Modal.Title>Filters</Modal.Title>
+        </Modal.Header> */}
+        <Modal.Body>
+          <h2>FILTERS</h2> {/* Added heading */}
           <ul className="filter-list">
             {filters.map((filter, index) => (
               <li key={index}>
-                {filter.name}
+                <h4>{filter.name}</h4>
                 <ul className="checkbox-list">
                   {filter.items.map((item, idx) => (
                     <li key={idx}>
@@ -115,8 +120,13 @@ function UniversalSearch({ onSearch }) {
               </li>
             ))}
           </ul>
-        </div>
-      )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={toggleFilters}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
