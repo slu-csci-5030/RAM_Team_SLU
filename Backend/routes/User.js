@@ -8,13 +8,17 @@ const userRouter = express.Router();
 // 	return res.status(200).send(req.user);
 // });
 
-userRouter.get("/me", auth, async (req, res) => {
+userRouter.get("/users", auth, async (req, res) => {
 	try {
 		const users = await userModel.find({});
 		return res.status(200).send(users);
 	} catch (error) {
 		res.status(500).send({ message: error.message });
 	}
+});
+
+userRouter.get("/users/me", auth, async (req, res) => {
+	res.send(req.user);
 });
 
 userRouter.post("/login", async (req, res) => {
