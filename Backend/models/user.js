@@ -55,6 +55,10 @@ const userSchema = new Schema({
 			}
 		},
 	},
+	Verified: {
+		type: Boolean,
+		default: false,
+	},
 	tokens: [
 		{
 			token: {
