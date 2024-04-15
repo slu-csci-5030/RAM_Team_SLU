@@ -1,10 +1,9 @@
 import express, { response } from "express";
 import userModel from "../models/user.js";
 import userVerificationModel from "../models/userVerification.js";
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
 import auth from "../middleware/auth.js";
 import nodemailer from "nodemailer";
-import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import "dotenv/config";
 
@@ -14,7 +13,7 @@ const transporter = nodemailer.createTransport({
 	service: "gmail",
 	auth: {
 		user: process.env.AUTH_EMAIL,
-		pass: process.env.AUTH_PASSWORD,
+		pass: process.env.AUTH_PASS,
 	},
 });
 
@@ -31,95 +30,6 @@ transporter.verify((error, success) => {
 // 	return res.status(200).send(req.user);
 // });
 
-const sendVerificationEmail = ({ _id, Email }, res) => {
-	const currentUrl = "http://localhost:5555/";
-	const uniqueString = uuidv4() + _id;
-
-	const mailOptions = {
-		from: process.env.AUTH_EMAIL,
-		to: Email,
-		subject: "Account Confirmation!",
-		html: `<p>Verify your email address by clicking the link below to confirm your account.</p><p>This link <b>expires in 6 hours</b>.</p><p>Click <a href = ${
-			currentUrl + "User/verify/" + _id + "/" + uniqueString
-		}></a></p>`,
-	};
-
-	const saltRounds = 10;
-	bcrypt
-		.hash()
-		.then((hashedString) => {
-			const newVerification = new userVerificationModel({
-				userID: _id,
-				uniqueString: hash,
-				createdAt: Date.now(),
-				expiresAt: Date.now() + 21600000,
-			});
-			newVerification
-				.save()
-				.then(() => {
-					transporter
-						.sendMail(mailOptions)
-						.then(() => {
-							res.json({
-								status: "PENDING",
-								message: "Verification email sent successfully",
-							});
-						})
-						.catch((error) => {
-							console.log(error);
-							res.json({
-								status: "FAILED",
-								message: "Verification email failed",
-							});
-						});
-				})
-				.catch((error) => {
-					console.log(error);
-					res.json({
-						status: "FAILED",
-						message: "Couldn't save verification data!",
-					});
-				});
-		})
-		.catch(() => {
-			res.json({
-				status: "FAILED",
-				message: "AN error while hashing email data!",
-			});
-		});
-	// bcrypt.hash(uniqueString, saltRounds, async (error, hash) => {
-	// 	if (error) {
-	// 		return res.status(500).send({ error: error.message });
-	// 	}
-	// 	const newVerification = new userVerificationModel({
-	// 		userID: _id,
-	// 		uniqueString: hash,
-	// 		createdAt: Date.now(),
-	// 		expiresAt: Date.now() + 21600000,
-	// 	});
-	// 	try {
-	// 		await newVerification.save();
-	// 		transporter.sendMail(mailOptions);
-	// 		return res.status(200).send(newVerification);
-	// 	} catch (error) {
-	// 		res.status(500).send({ error: error.message });
-	// 	}
-	// });
-};
-
-userRouter.get("/verify/:userID/:uniqueString", async (req, res) => {
-	const { userID, uniqueString } = req.params;
-	try {
-		const userVerification = await userVerificationModel.find({ userID });
-	} catch (error) {
-		res.status(404).send({ error: error.message });
-	}
-});
-
-userRouter.get("/verified", (req, res) => {
-	res.sendFile(path.join(__dirname, "../views/verified.html"));
-});
-
 userRouter.get("/users", auth, async (req, res) => {
 	try {
 		const users = await userModel.find({});
@@ -129,8 +39,52 @@ userRouter.get("/users", auth, async (req, res) => {
 	}
 });
 
+userRouter.post("/logout", auth, async (req, res) => {
+	try {
+		req.user.tokens = req.user.tokens.filter((token) => {
+			return token.token !== req.token;
+		});
+		await req.user.save();
+		res.send();
+	} catch (error) {
+		res.status(500).send();
+	}
+});
+
 userRouter.get("/users/me", auth, async (req, res) => {
 	res.send(req.user);
+});
+
+userRouter.get("/verify", async (req, res) => {
+	try {
+		const { token } = req.query;
+
+		// Find the verification entry in the database
+		const verificationEntry = await userVerificationModel.findOne({
+			uniqueString: token,
+			expiresAt: { $gt: new Date() }, // Ensure the token is not expired
+		});
+
+		if (!verificationEntry) {
+			return res
+				.status(400)
+				.send({ message: "Invalid or expired verification token" });
+		}
+
+		// Mark the user as verified in the users collection
+		await userModel.updateOne(
+			{ _id: verificationEntry.userID },
+			{ Verified: true }
+		);
+
+		// Delete the verification entry from the verification collection
+		await userVerificationModel.deleteOne({ _id: verificationEntry._id });
+
+		return res.status(200).send({ message: "Account verified successfully" });
+	} catch (error) {
+		console.log(error.message);
+		res.status(500).send({ message: error.message });
+	}
 });
 
 userRouter.post("/login", async (req, res) => {
@@ -139,8 +93,16 @@ userRouter.post("/login", async (req, res) => {
 			req.body.Email,
 			req.body.Password
 		);
+
+		if (!user.Verified) {
+			return res.status(401).send({
+				message:
+					"Email not verified. Please verify your email before logging in.",
+			});
+		}
+
 		const token = await user.generateAuthToken();
-		res.send(user);
+		res.send({ user, token });
 	} catch (error) {
 		console.log(error.message);
 		res.status(400).send({ message: error.message });
@@ -168,10 +130,30 @@ userRouter.post("/signup", async (req, res) => {
 			Verified: false,
 		};
 
-		// const user = await userModel.create(newUser);
-		// const token = await user.generateAuthToken();
-		sendVerificationEmail(newUser, res);
-		// return res.status(200).send(user);
+		const user = await userModel.create(newUser);
+		const token = await user.generateAuthToken();
+		const verificationToken = uuidv4();
+		await userVerificationModel.create({
+			userID: user._id,
+			uniqueString: verificationToken,
+			createdAt: new Date(),
+			expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000), // Token expiration time (24 hours)
+		});
+
+		// Send verification email
+		const verificationLink = `${process.env.CLIENT_URL}/User/verify?token=${verificationToken}`;
+		const mailOptions = {
+			from: process.env.AUTH_EMAIL,
+			to: req.body.Email,
+			subject: "Account Verification",
+			html: `<p>Hello ${req.body.Firstname},</p>
+             <p>Please click on the following link to verify your account:</p>
+             <a href=${verificationLink}">${verificationLink}</a>`,
+		};
+
+		// sendVerificationEmail(newUser, res);
+		await transporter.sendMail(mailOptions);
+		return res.status(200).send(user);
 	} catch (error) {
 		console.log(error.message);
 		res.status(500).send({ message: error.message });

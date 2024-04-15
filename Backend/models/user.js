@@ -35,11 +35,12 @@ const userSchema = new Schema({
 		validate(value) {
 			if (!validator.isEmail(value)) {
 				throw new Error("Invalid Email!");
-			} else {
-				if (!["slu.edu"].includes(value.split("@")[1])) {
-					throw new Error("Invalid Email!");
-				}
 			}
+			// else {
+			// 	if (!["slu.edu"].includes(value.split("@")[1])) {
+			// 		throw new Error("Invalid Email!");
+			// 	}
+			// }
 		},
 	},
 	Password: {
