@@ -1,5 +1,5 @@
 import express from "express";
-import { equipmentModel } from "../models/equipmentAsset.js";
+import equipmentModel from "../models/equipmentAsset.js";
 
 const equipmentRouter = express.Router();
 

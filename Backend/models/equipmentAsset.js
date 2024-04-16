@@ -1,55 +1,28 @@
-import mongoose from "mongoose";
+import * as config from "../config.js"
+import got from "got"
 
-const Schema = mongoose.Schema;
-
-const equipmentSchema = new Schema(
-	{
-		Category: {
-			type: String,
-			enum: [
-				"Database",
-				"Instrument",
-				"Software",
-				"Service",
-				"Laboratory",
-				"Collection",
-				"Biological material",
-				"Reagent",
-				"Facility",
-			],
-			required: true,
-			default: "Database",
-		},
-		name: {
-			type: String,
-			required: true,
-		},
-		description: {
-			type: String,
-			required: true,
-		},
-		"additional-name": {
-			type: String,
-			required: true,
-		},
-		"coded-in": {
-			type: String,
-			required: function () {
-				return this.Category === "Database" || this.Category === "Software";
-			},
-		},
-		contacts: {
-			type: String,
-			enum: ["Person 1", "Person 2", "Person 3"],
-			required: true,
-		},
-	},
-	{
-		timestamps: true,
+export default class equipmentModel {
+	create(assetJSON) {
+		return got.post(`${config.mongoDBURL}create`, {json: assetJSON}).json()
 	}
-);
 
-export const equipmentModel = mongoose.model(
-	"Asset_Equipments",
-	equipmentSchema
-);
+	find(findParams) {
+		return got.get(`${config.mongoDBURL}query`, {json: findParams}).json()
+	}
+
+	findById(id=null) {
+		return got.get(`${config.mongoDBURL}query`, {json: {"@id": id}}).json()
+	}
+
+	async findByIdAndUpdate(id, newData) {
+		reqOptions = {
+			"@id": id,
+			...newData
+		}
+		return got.put(`${config.mongoDBURL}overwrite`, {json: reqOptions}).json()
+	}
+
+	findByIdAndDelete(id) {
+		return got.delete(`${config.mongoDBURL}delete`, {json: {"@id": id}}).json()
+	}
+}
