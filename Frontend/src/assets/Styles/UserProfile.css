@@ -14,7 +14,7 @@
     margin-bottom: 20px;
   }
   
-  .user-profile-info, .profile-edit-form {
+  .user-profile-info, .profile-edit-form { /*Added Edit option */
     display: flex;
     flex-direction: column;
   }
