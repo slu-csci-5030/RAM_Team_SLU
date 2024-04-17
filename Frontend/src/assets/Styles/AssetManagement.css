@@ -53,3 +53,16 @@
 .delete-asset-button:hover {
 	background-color: #d32f2f;
 }
+.card {
+	width: 200px; /* Set a fixed width */
+	height: 100px; /* Set a fixed height */
+	background-color: white;
+	border: 1px solid #ccc;
+	padding: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	position: absolute;
+	overflow: hidden; /* Hide the overflowing text */
+	
+  }
+  
