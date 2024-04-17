@@ -54,13 +54,13 @@
 }
 
 .avatar {
-  margin-top: 20px; /* Added margin for avatar spacing */
+  margin-top: 20px; /
 }
 
 .avatar img {
-  border-radius: 50%; /* Style for circular avatar image */
-  width: 100px; /* Fixed width for avatar image */
-  height: 100px; /* Fixed height for avatar image */
+  border-radius: 50%; 
+  width: 100px; 
+  height: 100px; 
 }
 
   
