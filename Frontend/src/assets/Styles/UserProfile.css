@@ -41,7 +41,7 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 10px; /* Added margin for better spacing */
+    margin-top: 10px; 
   }
   
   .user-profile-button:hover, .edit-button:hover, .save-button:hover {
