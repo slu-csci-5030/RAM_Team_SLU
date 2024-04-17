@@ -28,3 +28,56 @@
 .universal-search button:hover {
 	background-color: #002a73;
 }
+
+.centered-button {
+	display: flex;
+	justify-content: center;
+  }
+
+  .filter-popup {
+	display: flex;
+	justify-content: center;
+  }
+  
+  .filter-list {
+	list-style-type: none;
+	display: flex;
+  }
+  
+  .filter-list li {
+	/* margin-right: 20px;  */
+	margin: 10px;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  
+  .filter-list li:hover {
+	background-color: #f0f0f0;
+  }
+  
+  .dropdown-menu {
+	display: none;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+  }
+  
+  .filter-list li:hover .dropdown-menu {
+	display: block;
+	position: absolute;
+	border-top: none;
+	width: auto; 
+  }
+
+  .dropdown-menu li {
+	padding: 4px 8px;
+  }
+  
+  .dropdown-menu li:hover {
+	background-color: #f0f0f0;
+  }
+
+
+  
