@@ -6,9 +6,9 @@ function AddAsset({ onAdd }) {
     assetName: "",
     location: "",
     quantity: "",
+    description: "", // Add description field
   });
   const [showModal, setShowModal] = useState(false);
-  const [assetsList, setAssetsList] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,10 +21,9 @@ function AddAsset({ onAdd }) {
       asset.location.trim() !== "" &&
       asset.quantity.trim() !== ""
     ) {
-      const newAssetsList = [...assetsList, asset];
-      setAssetsList(newAssetsList);
-      onAdd(asset); // You can remove this line if you don't need the parent to know about the new asset
-      setAsset({ assetName: "", location: "", quantity: "" });
+      const newAsset = { ...asset }; // Create a new asset object
+      onAdd(newAsset); // Pass the new asset to the onAdd function
+      setAsset({ assetName: "", location: "", quantity: "", description: "" }); // Reset form fields
       setShowModal(false); // Close the modal after adding asset
     }
   };
@@ -68,23 +67,21 @@ function AddAsset({ onAdd }) {
               className="add-asset-input"
               name="quantity"
             />
+            {/* Add description input */}
+            <input
+              type="text"
+              placeholder="Description"
+              value={asset.description}
+              onChange={handleChange}
+              className="add-asset-input"
+              name="description"
+            />
             <button id="submitbutton" onClick={handleAdd}>
               Submit
             </button>
           </div>
         </div>
       )}
-
-      <div className="assets-list">
-        <h3>Assets List</h3>
-        {/* <ul>
-          {assetsList.map((item, index) => (
-            <li key={index}>
-              {item.assetName} - {item.location} - {item.quantity}
-            </li>
-          ))}
-        </ul> */}
-      </div>
     </>
   );
 }
