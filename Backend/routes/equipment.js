@@ -2,6 +2,7 @@ import express from "express";
 import equipmentModel from "../models/equipmentAsset.js";
 
 const equipmentRouter = express.Router();
+const model = new equipmentModel();
 
 // Create a equipment type Asset
 equipmentRouter.post("/", async (req, res) => {
@@ -25,7 +26,7 @@ equipmentRouter.post("/", async (req, res) => {
 			"coded-in": req.body["coded-in"],
 			contacts: req.body.contacts,
 		};
-		const asset = await equipmentModel.create(newAsset);
+		const asset = await model.create(newAsset);
 		return res.status(201).send(asset);
 	} catch (error) {
 		console.log(error.message);
@@ -36,7 +37,7 @@ equipmentRouter.post("/", async (req, res) => {
 // Get all the assets in DB
 equipmentRouter.get("/", async (req, res) => {
 	try {
-		const assets = await equipmentModel.find({});
+		const assets = await model.find({});
 		return res.status(200).json({
 			count: assets.length,
 			data: assets,
@@ -51,7 +52,7 @@ equipmentRouter.get("/", async (req, res) => {
 equipmentRouter.get("/:id", async (req, res) => {
 	try {
 		const id = req.params.id;
-		const asset = await equipmentModel.findById(id);
+		const asset = await model.findById(id);
 		return res.status(200).json(asset);
 	} catch (error) {
 		console.log(error.message);
@@ -76,7 +77,7 @@ equipmentRouter.patch("/:id", async (req, res) => {
 
 		const id = req.params.id;
 
-		const result = await equipmentModel.findByIdAndUpdate(id, req.body);
+		const result = await model.findByIdAndUpdate(id, req.body);
 
 		if (!result) {
 			return res.status(404).json({ message: "Asset not found!" });
@@ -93,7 +94,7 @@ equipmentRouter.patch("/:id", async (req, res) => {
 equipmentRouter.delete("/:id", async (req, res) => {
 	try {
 		const id = req.params.id;
-		const asset = await equipmentModel.findByIdAndDelete(id);
+		const asset = await model.findByIdAndDelete(id);
 
 		if (!asset) {
 			return res.status(404).json({ message: "Asset not found!" });

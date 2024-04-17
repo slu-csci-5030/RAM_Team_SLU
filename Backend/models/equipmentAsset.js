@@ -6,23 +6,30 @@ export default class equipmentModel {
 		return got.post(`${config.mongoDBURL}create`, {json: assetJSON}).json()
 	}
 
-	find(findParams) {
-		return got.get(`${config.mongoDBURL}query`, {json: findParams}).json()
+	find(findParams, limit=10, skip=0) {
+		let jsonData = findParams
+		if (Object.keys(findParams).length === 0) {
+			jsonData = {"*": "*"}
+		}
+		return got.post(`${config.mongoDBURL}query?limit=${limit}&skip=${skip}`, {"json": jsonData}).json()
 	}
 
-	findById(id=null) {
-		return got.get(`${config.mongoDBURL}query`, {json: {"@id": id}}).json()
+	findById(id, limit=10, skip=0) {
+		let idURL = `https://devstore.rerum.io/v1/${id}`
+		return got.post(`${config.mongoDBURL}query?limit=${limit}&skip=${skip}`, {json: {"@id": idURL}}).json()
 	}
 
 	async findByIdAndUpdate(id, newData) {
-		reqOptions = {
-			"@id": id,
+		let assetURI = await this.findById(id, 1)[0]["@id"]
+		let reqOptions = {
+			"@id": assetURI,
 			...newData
 		}
-		return got.put(`${config.mongoDBURL}overwrite`, {json: reqOptions}).json()
+		return got.patch(`${config.mongoDBURL}overwrite`, {json: reqOptions}).json()
 	}
 
-	findByIdAndDelete(id) {
-		return got.delete(`${config.mongoDBURL}delete`, {json: {"@id": id}}).json()
+	async findByIdAndDelete(id) {
+		let assetURI = await this.findById(id, 1)[0]["@id"]
+		return got.delete(`${config.mongoDBURL}delete`, {json: {"@id": assetURI}}).json()
 	}
 }

@@ -29,6 +29,11 @@ app.get("/", (req, res) => {
 	return res.status(200).send("<h1>Hello, RAM Team!</h1>");
 });
 
+app.listen(PORT, () => {
+	console.log(`Example app listening on port ${PORT}`);
+	console.log(`Check http://localhost:${PORT}`);
+});
+
 // mongoose
 // 	.connect(mongoDBURL)
 // 	.then(() => {
