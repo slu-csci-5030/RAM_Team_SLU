@@ -20,7 +20,5 @@ mongoose.connect('mongodb+srv://kasiviswanadhmogali:yMOYBcJQhTRY3aFo@cluster0.f4
         console.log(`Check http://localhost:${PORT}`);
     });
 })
-.catch((err) => {
-    console.error("Error connecting to MongoDB:", err);
-});
+
 
