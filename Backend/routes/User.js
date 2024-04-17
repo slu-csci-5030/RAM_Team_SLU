@@ -26,9 +26,11 @@ transporter.verify((error, success) => {
 	}
 });
 
+
 // userRouter.get("/me", (req, res) => {
 // 	return res.status(200).send(req.user);
 // });
+
 
 userRouter.get("/users", auth, async (req, res) => {
 	try {
@@ -94,6 +96,7 @@ userRouter.post("/login", async (req, res) => {
 			req.body.Password
 		);
 
+
 		if (!user.Verified) {
 			return res.status(401).send({
 				message:
@@ -103,6 +106,7 @@ userRouter.post("/login", async (req, res) => {
 
 		const token = await user.generateAuthToken();
 		res.send({ user, token });
+
 	} catch (error) {
 		console.log(error.message);
 		res.status(400).send({ message: error.message });
@@ -127,11 +131,14 @@ userRouter.post("/signup", async (req, res) => {
 			Lastname: req.body.Lastname,
 			Email: req.body.Email,
 			Password: req.body.Password,
+
 			Verified: false,
+
 		};
 
 		const user = await userModel.create(newUser);
 		const token = await user.generateAuthToken();
+
 		const verificationToken = uuidv4();
 		await userVerificationModel.create({
 			userID: user._id,
