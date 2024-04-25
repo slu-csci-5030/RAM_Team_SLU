@@ -11,7 +11,8 @@ equipmentRouter.post("/", async (req, res) => {
 			!req.body.name ||
 			!req.body.description ||
 			!req.body["additional-name"] ||
-			!req.body.contacts
+			!req.body.contacts ||
+			!req.body.contact-email || !req.body.contact-name || !req.body.available_for_use
 		) {
 			return res.status(400).send({
 				message: "Please provide all the required fields",

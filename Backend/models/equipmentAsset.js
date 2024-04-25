@@ -43,6 +43,18 @@ const equipmentSchema = new Schema(
 			enum: ["Person 1", "Person 2", "Person 3"],
 			required: true,
 		},
+		"contact-email" : {
+			type: String,
+			required: true,
+		},
+		"contact-name": {
+			type: String,
+			required: true,
+		},
+		"available_for_use" : {
+			type: String,
+			required: true,
+		}
 	},
 	{
 		timestamps: true,
