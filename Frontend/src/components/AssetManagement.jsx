@@ -12,6 +12,7 @@ function AssetManagement() {
   const [editedAsset, setEditedAsset] = useState({});
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState(null);
+  const [showNextFields, setShowNextFields] = useState(false); // State to control visibility of next fields
 
   const handleAddAsset = (newAsset) => {
     setAssets([...assets, newAsset]);
@@ -43,6 +44,11 @@ function AssetManagement() {
 
   const handleClosePopup = () => {
     setSelectedAsset(null);
+    setShowNextFields(false); // Reset showNextFields state when closing popup
+  };
+
+  const handleNextClick = () => {
+    setShowNextFields(!showNextFields);
   };
 
   return (
@@ -57,6 +63,13 @@ function AssetManagement() {
               <th>Asset Name</th>
               <th>Quantity</th>
               <th>Location</th>
+              {showNextFields && (
+                <>
+                  <th>Subtype</th>
+                  <th>Start Date</th>
+                  <th>Finish Date</th>
+                </>
+              )}
               <th>Options</th>
             </tr>
           </thead>
@@ -67,6 +80,13 @@ function AssetManagement() {
                 <td>{asset.assetName}</td>
                 <td>{asset.quantity}</td>
                 <td>{asset.location}</td>
+                {showNextFields && (
+                  <>
+                    <td>{asset.subtype}</td>
+                    <td>{asset.startDate}</td>
+                    <td>{asset.finishDate}</td>
+                  </>
+                )}
                 <td>
                   <div className="asset-actions">
                     <button
@@ -82,19 +102,22 @@ function AssetManagement() {
             ))}
           </tbody>
         </table>
-        {selectedAsset && (
-          <div className="popup-overlay" onClick={handleClosePopup}>
-            <div className="popup">
-              <span className="close" onClick={handleClosePopup}>
-                &times;
-              </span>
-              <h2>Asset Details</h2>
-              <p>Serial Number: {assets.indexOf(selectedAsset) + 1}</p>
-              <p>Description: {selectedAsset.description}</p>
-            </div>
-          </div>
-        )}
+        <button onClick={handleNextClick}>
+          {showNextFields ? "Previous" : "Next"}
+        </button>
       </div>
+      {selectedAsset && (
+        <div className="popup-overlay" onClick={handleClosePopup}>
+          <div className="popup">
+            <span className="close" onClick={handleClosePopup}>
+              &times;
+            </span>
+            <h2>Asset Details</h2>
+            <p>Serial Number: {assets.indexOf(selectedAsset) + 1}</p>
+            <p>Description: {selectedAsset.description}</p>
+          </div>
+        </div>
+      )}
       {showEditModal && (
         <EditAsset
           asset={editedAsset}

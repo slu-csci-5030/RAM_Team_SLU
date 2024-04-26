@@ -6,7 +6,10 @@ function AddAsset({ onAdd }) {
     assetName: "",
     location: "",
     quantity: "",
-    description: "", // Add description field
+    subtype: "", // Add subtype field
+    startDate: "", // Add startDate field
+    finishDate: "", // Add finishDate field
+    description: "",
   });
   const [showModal, setShowModal] = useState(false);
 
@@ -19,11 +22,22 @@ function AddAsset({ onAdd }) {
     if (
       asset.assetName.trim() !== "" &&
       asset.location.trim() !== "" &&
-      asset.quantity.trim() !== ""
+      asset.quantity.trim() !== "" &&
+      asset.subtype.trim() !== "" && // Ensure subtype is not empty
+      asset.startDate.trim() !== "" && // Ensure startDate is not empty
+      asset.finishDate.trim() !== "" // Ensure finishDate is not empty
     ) {
       const newAsset = { ...asset }; // Create a new asset object
       onAdd(newAsset); // Pass the new asset to the onAdd function
-      setAsset({ assetName: "", location: "", quantity: "", description: "" }); // Reset form fields
+      setAsset({
+        assetName: "",
+        location: "",
+        quantity: "",
+        subtype: "",
+        startDate: "",
+        finishDate: "",
+        description: "",
+      }); // Reset form fields
       setShowModal(false); // Close the modal after adding asset
     }
   };
@@ -67,6 +81,33 @@ function AddAsset({ onAdd }) {
               className="add-asset-input"
               name="quantity"
             />
+            {/* Add subtype input */}
+            <input
+              type="text"
+              placeholder="Subtype"
+              value={asset.subtype}
+              onChange={handleChange}
+              className="add-asset-input"
+              name="subtype"
+            />
+            {/* Add startDate input */}
+            <input
+              type="text"
+              placeholder="Start Date"
+              value={asset.startDate}
+              onChange={handleChange}
+              className="add-asset-input"
+              name="startDate"
+            />
+            {/* Add finishDate input */}
+            <input
+              type="text"
+              placeholder="Finish Date"
+              value={asset.finishDate}
+              onChange={handleChange}
+              className="add-asset-input"
+              name="finishDate"
+            />
             {/* Add description input */}
             <input
               type="text"
@@ -85,4 +126,5 @@ function AddAsset({ onAdd }) {
     </>
   );
 }
+
 export default AddAsset;
