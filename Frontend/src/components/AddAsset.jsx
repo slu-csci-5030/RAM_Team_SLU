@@ -6,6 +6,8 @@ function AddAsset({ onAdd }) {
     assetName: "",
     location: "",
     quantity: "",
+    description: "",
+    contactEmail: ""
   });
   const [showModal, setShowModal] = useState(false);
   const [assetsList, setAssetsList] = useState([]);
@@ -19,12 +21,14 @@ function AddAsset({ onAdd }) {
     if (
       asset.assetName.trim() !== "" &&
       asset.location.trim() !== "" &&
-      asset.quantity.trim() !== ""
+      asset.quantity.trim() !== "" &&
+      asset.description.trim() !== "" &&
+      asset.contactEmail.trim() !== ""
     ) {
       const newAssetsList = [...assetsList, asset];
       setAssetsList(newAssetsList);
       onAdd(asset); // You can remove this line if you don't need the parent to know about the new asset
-      setAsset({ assetName: "", location: "", quantity: "" });
+      setAsset({ assetName: "", location: "", quantity: "", description: "", contactEmail: "" });
       setShowModal(false); // Close the modal after adding asset
     }
   };
@@ -67,6 +71,22 @@ function AddAsset({ onAdd }) {
               onChange={handleChange}
               className="add-asset-input"
               name="quantity"
+            />
+            <input
+              type="text"
+              placeholder="Description"
+              value={asset.description}
+              onChange={handleChange}
+              className="add-asset-input"
+              name="description"
+            />
+            <input
+              type="email"
+              placeholder="Contact-Email"
+              value={asset.contactEmail}
+              onChange={handleChange}
+              className="add-asset-input"
+              name="contactEmail"
             />
             <button id="submitbutton" onClick={handleAdd}>
               Submit
