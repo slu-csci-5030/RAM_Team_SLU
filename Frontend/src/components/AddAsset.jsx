@@ -9,23 +9,46 @@ function AddAsset({ onAdd }) {
   });
   const [showModal, setShowModal] = useState(false);
   const [assetsList, setAssetsList] = useState([]);
+  const [validationErrors, setValidationErrors] = useState({
+    assetName: "",
+    location: "",
+    quantity: "",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setAsset({ ...asset, [name]: value });
+    // Validate if quantity field contains only numbers
+    if (name === "quantity" && !/^\d+$/.test(value)) {
+      setValidationErrors({ ...validationErrors, [name]: "Quantity must be a number" });
+    } else {
+      setValidationErrors({ ...validationErrors, [name]: "" });
+      setAsset({ ...asset, [name]: value });
+    }
   };
 
   const handleAdd = () => {
-    if (
-      asset.assetName.trim() !== "" &&
-      asset.location.trim() !== "" &&
-      asset.quantity.trim() !== ""
-    ) {
+    const errors = {};
+    // Validate input fields
+    if (asset.assetName.trim() === "") {
+      errors.assetName = "Asset name is required";
+    }
+    if (asset.location.trim() === "") {
+      errors.location = "Location is required";
+    }
+    if (asset.quantity.trim() === "") {
+      errors.quantity = "Quantity is required";
+    }
+
+    if (Object.keys(errors).length === 0) {
+      // If no errors, proceed with adding asset
       const newAssetsList = [...assetsList, asset];
       setAssetsList(newAssetsList);
-      onAdd(asset); // You can remove this line if you don't need the parent to know about the new asset
+      onAdd(asset);
       setAsset({ assetName: "", location: "", quantity: "" });
-      setShowModal(false); // Close the modal after adding asset
+      setShowModal(false);
+    } else {
+      // Set validation errors for each input field
+      setValidationErrors(errors);
     }
   };
 
@@ -43,7 +66,6 @@ function AddAsset({ onAdd }) {
             <span className="close" onClick={() => setShowModal(false)}>
               &times;
             </span>
-            {/* Add your form elements here */}
             <input
               type="text"
               placeholder="Asset Name"
@@ -52,6 +74,8 @@ function AddAsset({ onAdd }) {
               className="add-asset-input"
               name="assetName"
             />
+            {/* Render validation message if there is an error */}
+            {validationErrors.assetName && <span className="error-message">{validationErrors.assetName}</span>}
             <input
               type="text"
               placeholder="Location"
@@ -60,6 +84,7 @@ function AddAsset({ onAdd }) {
               className="add-asset-input"
               name="location"
             />
+            {validationErrors.location && <span className="error-message">{validationErrors.location}</span>}
             <input
               type="text"
               placeholder="Quantity"
@@ -68,6 +93,8 @@ function AddAsset({ onAdd }) {
               className="add-asset-input"
               name="quantity"
             />
+            {/* Render validation message if there is an error */}
+            {validationErrors.quantity && <span className="error-message">{validationErrors.quantity}</span>}
             <button id="submitbutton" onClick={handleAdd}>
               Submit
             </button>

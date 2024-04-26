@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import AssetManagement from "./components/AssetManagement";
 
 import Footer from "./components/Footer";
+import SignUpModal from "./components/SignUpmodal";
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 				<Header />
 				<Switch>
 					<Route exact path="/" component={Home} />
+					<Route exact path="/signup" component={SignUpModal} />
 					<Route exact path="/loggedIn" component={AssetManagement} />
 				</Switch>
 				<Footer />
