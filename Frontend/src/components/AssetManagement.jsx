@@ -58,6 +58,8 @@ function AssetManagement() {
 								<th>Asset Name</th>
 								<th>Quantity</th>
 								<th>Location</th>
+								<th>Description</th>
+								<th>Contact-Email</th>
 								<th>Options</th>
 							</tr>
 						</thead>
@@ -68,6 +70,8 @@ function AssetManagement() {
 									<td>{asset.assetName}</td>
 									<td>{asset.quantity}</td>
 									<td>{asset.location}</td>
+									<td>{asset.description}</td>
+									<td>{asset.contactEmail}</td>
 									<td>
 										<div className="asset-actions">
 											<button
