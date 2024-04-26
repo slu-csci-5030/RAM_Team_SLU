@@ -6,7 +6,11 @@ function AddAsset({ onAdd }) {
     assetName: "",
     location: "",
     quantity: "",
+    category: "",
+    purchaseDate: "",
+    status: "Active", //given a default value
   });
+
   const [showModal, setShowModal] = useState(false);
   const [assetsList, setAssetsList] = useState([]);
 
@@ -19,13 +23,24 @@ function AddAsset({ onAdd }) {
     if (
       asset.assetName.trim() !== "" &&
       asset.location.trim() !== "" &&
-      asset.quantity.trim() !== ""
+      asset.quantity.trim() !== "" &&
+      asset.category.trim() !== "" &&
+      asset.purchaseDate.trim() !== ""
     ) {
       const newAssetsList = [...assetsList, asset];
       setAssetsList(newAssetsList);
-      onAdd(asset); // You can remove this line if you don't need the parent to know about the new asset
-      setAsset({ assetName: "", location: "", quantity: "" });
-      setShowModal(false); // Close the modal after adding asset
+      onAdd(asset);
+      setAsset({
+        assetName: "",
+        location: "",
+        quantity: "",
+        category: "",
+        purchaseDate: "",
+        status: "Active", //here we are Resetting status to default after adding asset
+      });
+      setShowModal(false);
+    } else {
+      alert("Please fill in all mandatory fields.");
     }
   };
 
@@ -43,7 +58,6 @@ function AddAsset({ onAdd }) {
             <span className="close" onClick={() => setShowModal(false)}>
               &times;
             </span>
-            {/* Add your form elements here */}
             <input
               type="text"
               placeholder="Asset Name"
@@ -68,24 +82,30 @@ function AddAsset({ onAdd }) {
               className="add-asset-input"
               name="quantity"
             />
+            <input
+              type="text"
+              placeholder="Category"
+              value={asset.category}
+              onChange={handleChange}
+              className="add-asset-input"
+              name="category"
+            />
+            <input
+              type="date"
+              placeholder="Purchase Date"
+              value={asset.purchaseDate}
+              onChange={handleChange}
+              className="add-asset-input"
+              name="purchaseDate"
+            />
             <button id="submitbutton" onClick={handleAdd}>
               Submit
             </button>
           </div>
         </div>
       )}
-
-      <div className="assets-list">
-        <h3>Assets List</h3>
-        {/* <ul>
-          {assetsList.map((item, index) => (
-            <li key={index}>
-              {item.assetName} - {item.location} - {item.quantity}
-            </li>
-          ))}
-        </ul> */}
-      </div>
     </>
   );
 }
+
 export default AddAsset;
