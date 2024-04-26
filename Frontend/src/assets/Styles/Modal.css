@@ -47,6 +47,9 @@
 .modal input[type="password"],
 .modal input[type="text"],
 .modal input[type="tel"],
+.modal input[type="url"],
+.modal input[type="date"],
+.modal select,
 .modal textarea,
 .modal button {
     display: block;
@@ -65,7 +68,9 @@
 .modal input[type="email"],
 .modal input[type="password"],
 .modal input[type="text"],
-.modal input[type="tel"]
+.modal input[type="tel"],
+.modal input[type="url"],
+.modal input[type="date"]
  {
     width: calc(93% - 24px);
 }
