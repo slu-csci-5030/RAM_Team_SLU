@@ -31,6 +31,7 @@ function AddAsset({ onAdd }) {
 
   return (
     <>
+      <div>
       <div className="add-asset-container">
         <button onClick={() => setShowModal(true)} className="add-asset-button">
           Add Asset
@@ -77,15 +78,18 @@ function AddAsset({ onAdd }) {
 
       <div className="assets-list">
         <h3>Assets List</h3>
-        {/* <ul>
+        <ul>
           {assetsList.map((item, index) => (
             <li key={index}>
               {item.assetName} - {item.location} - {item.quantity}
             </li>
           ))}
-        </ul> */}
+        </ul>
       </div>
-    </>
+    </div>
+ </>
+ 
   );
+
 }
-export default AddAsset;
+export default App;
