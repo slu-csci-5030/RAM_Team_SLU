@@ -1,10 +1,10 @@
 import express from "express";
-import { equipmentModel } from "../models/publicationAsset.js";
+import { publicationModel } from "../models/publicationAsset.js";
 
-const equipmentRouter = express.Router();
+const publicationRouter = express.Router();
 
-// Create a equipment type Asset
-equipmentRouter.post("/", async (req, res) => {
+// Create a publication type Asset
+publicationRouter.post("/", async (req, res) => {
 	try {
 		if (
 			!req.body.category ||
@@ -17,7 +17,7 @@ equipmentRouter.post("/", async (req, res) => {
 				message: "Please provide all the required fields",
 			});
 		}
-		const newAsset = {
+		const newPublication = {
 			Category: req.body.Category,
 			name: req.body.name,
 			description: req.body.description,
@@ -25,8 +25,48 @@ equipmentRouter.post("/", async (req, res) => {
 			"coded-in": req.body["coded-in"],
 			contacts: req.body.contacts,
 		};
-		const asset = await equipmentModel.create(newAsset);
-		return res.status(201).send(asset);
+		const publication = await publicationModel.create(newPublication);
+		return res.status(201).send(publication);
+	} catch (error) {
+		console.log(error.message);
+		res.status(500).send({ message: error.message });
+	}
+});
+
+publicationRouter.get("/", async (req, res) => {
+	try {
+		const publications = await publicationModel.find({});
+		return res.status(200).json({
+			count: publications.length,
+			data: publications,
+		});
+	} catch (error) {
+		console.log(error.message);
+		res.status(500).send({ message: error.message });
+	}
+});
+
+publicationRouter.get("/:id", async (req, res) => {
+	try {
+		const id = req.params.id;
+		const publication = await publicationModel.findById(id);
+		return res.status(200).json(publication);
+	} catch (error) {
+		console.log(error.message);
+		res.status(500).send({ message: error.message });
+	}
+});
+
+publicationRouter.delete("/:id", async (req, res) => {
+	try {
+		const id = req.params.id;
+		const publication = await publicationModel.findByIdAndDelete(id);
+
+		if (!publication) {
+			return res.status(404).json({ message: "Publication not found!" });
+		} else {
+			return res.status(200).send(publication);
+		}
 	} catch (error) {
 		console.log(error.message);
 		res.status(500).send({ message: error.message });

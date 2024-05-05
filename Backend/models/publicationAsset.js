@@ -44,6 +44,6 @@ const publicationSchema = new Schema(
 		timestamps: true,
 	});
 
-const MyModel = mongoose.model("MyModel", publicationSchema);
+const MyModel = mongoose.model("publicationModel", publicationSchema);
 
 module.exports = MyModel;
