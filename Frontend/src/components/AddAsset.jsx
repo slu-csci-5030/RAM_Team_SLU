@@ -6,6 +6,8 @@ function AddAsset({ onAdd }) {
     assetName: "",
     location: "",
     quantity: "",
+    modelNumber: "", // New state for model number
+    additionalList: [], // New state for additional list
   });
   const [showModal, setShowModal] = useState(false);
   const [assetsList, setAssetsList] = useState([]);
@@ -23,10 +25,21 @@ function AddAsset({ onAdd }) {
     ) {
       const newAssetsList = [...assetsList, asset];
       setAssetsList(newAssetsList);
-      onAdd(asset); // You can remove this line if you don't need the parent to know about the new asset
-      setAsset({ assetName: "", location: "", quantity: "" });
-      setShowModal(false); // Close the modal after adding asset
+      onAdd(asset);
+      setAsset({
+        assetName: "",
+        location: "",
+        quantity: "",
+        modelNumber: "", // Reset model number
+        additionalList: [], // Reset additional list
+      });
+      setShowModal(false);
     }
+  };
+
+  const handleAdditionalListChange = (e) => {
+    const { value } = e.target;
+    setAsset({ ...asset, additionalList: value.split(",") }); // Split the input string into an array
   };
 
   return (
@@ -43,7 +56,6 @@ function AddAsset({ onAdd }) {
             <span className="close" onClick={() => setShowModal(false)}>
               &times;
             </span>
-            {/* Add your form elements here */}
             <input
               type="text"
               placeholder="Asset Name"
@@ -68,6 +80,22 @@ function AddAsset({ onAdd }) {
               className="add-asset-input"
               name="quantity"
             />
+            <input
+              type="text"
+              placeholder="Model Number"
+              value={asset.modelNumber}
+              onChange={handleChange}
+              className="add-asset-input"
+              name="modelNumber"
+            />
+            <input
+              type="text"
+              placeholder="Additional List (comma-separated)"
+              value={asset.additionalList.join(",")} // Convert array to string
+              onChange={handleAdditionalListChange}
+              className="add-asset-input"
+              name="additionalList"
+            />
             <button id="submitbutton" onClick={handleAdd}>
               Submit
             </button>
@@ -77,13 +105,14 @@ function AddAsset({ onAdd }) {
 
       <div className="assets-list">
         <h3>Assets List</h3>
-        {/* <ul>
+        {/* Render the assets list here */}
+        <ul>
           {assetsList.map((item, index) => (
             <li key={index}>
-              {item.assetName} - {item.location} - {item.quantity}
+              {item.assetName} - {item.location} - {item.quantity} - {item.modelNumber} - {item.additionalList.join(",")}
             </li>
           ))}
-        </ul> */}
+        </ul>
       </div>
     </>
   );
