@@ -88,4 +88,22 @@ function AddAsset({ onAdd }) {
     </>
   );
 }
-export default AddAsset;
+
+function App() {
+  const [allAssets, setAllAssets] = useState([]);
+
+  const handleAddAsset = (newAsset) => {
+    setAllAssets([...allAssets, newAsset]);
+  };
+
+  return (
+    <div>
+      {/* AddAsset component instance 1 */}
+      <AddAsset onAdd={handleAddAsset} />
+      {/* AddAsset component instance 2 */}
+      <AddAsset onAdd={handleAddAsset} />
+    </div>
+  );
+}
+
+export default App;
