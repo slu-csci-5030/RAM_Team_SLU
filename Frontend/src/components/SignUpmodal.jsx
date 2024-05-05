@@ -1,14 +1,15 @@
-// SignUpModal.js
 import React, { useState } from "react";
 import "../assets/Styles/Modal.css";
 
 function SignUpModal({ onClose }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState(""); // New state for confirm password
 	const [fullName, setFullName] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState("");
 	const [emailError, setEmailError] = useState("");
 	const [passwordError, setPasswordError] = useState("");
+	const [confirmPasswordError, setConfirmPasswordError] = useState(""); // New state for confirm password error
 	const [phoneError, setPhoneError] = useState("");
 
 	const validateEmail = (email) => {
@@ -40,6 +41,13 @@ function SignUpModal({ onClose }) {
 			return;
 		} else {
 			setPasswordError("");
+		}
+
+		if (password !== confirmPassword) {
+			setConfirmPasswordError("Passwords do not match.");
+			return;
+		} else {
+			setConfirmPasswordError("");
 		}
 
 		if (!validatePhoneNumber(phoneNumber)) {
@@ -84,6 +92,13 @@ function SignUpModal({ onClose }) {
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 					{passwordError && <div className="error">{passwordError}</div>}
+					<input
+						type="password"
+						placeholder="Confirm Password" // New field for confirm password
+						value={confirmPassword}
+						onChange={(e) => setConfirmPassword(e.target.value)}
+					/>
+					{confirmPasswordError && <div className="error">{confirmPasswordError}</div>} // Error message for confirm password
 					<textarea
 						placeholder="Description"
 						value={fullName}
