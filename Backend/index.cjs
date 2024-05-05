@@ -1,9 +1,10 @@
-const { PORT } = 5555;
+
 const express = require('express')
 const User = require('./User.cjs');
 const { body, validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 const app = express();
+const PORT = process.env.PORT || 5555
 
 const dbURI = "mongodb+srv://mdrohitreddy:mdrohitreddy@cluster0.bzga5vf.mongodb.net/";
 

@@ -9,9 +9,22 @@ function LoginModal({ onClose }) {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    
-    console.log('Login form submitted with email:', email, 'and password:', password);
-    onClose();
+  
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+        onClose();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
   return (
