@@ -10,19 +10,23 @@ function SignUpModal({ onClose }) {
 
 	const handleSignUpSubmit = (e) => {
 		e.preventDefault();
-
-		console.log(
-			"Sign Up form submitted with email:",
-			email,
-			"password:",
-			password,
-			"full name:",
-			fullName,
-			"phone number:",
-			phoneNumber
-		);
-		onClose();
-	};
+	  
+		fetch('/createuser', {
+		  method: 'POST',
+		  headers: {
+			'Content-Type': 'application/json',
+		  },
+		  body: JSON.stringify({ email, password, fullName, phoneNumber }),
+		})
+		  .then((response) => response.json())
+		  .then((data) => {
+			console.log('Success:', data);
+			onClose();
+		  })
+		  .catch((error) => {
+			console.error('Error:', error);
+		  });
+	  };
 
 	return (
 		<div className="modal">
