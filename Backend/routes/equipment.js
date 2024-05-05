@@ -64,34 +64,32 @@ equipmentRouter.get("/:id", async (req, res) => {
 });
 
 // Update a specific asset with ID
-equipmentRouter.patch("/:id", async (req, res) => {
+equipmentRouter.put("/:id", async (req, res) => {
 	try {
-		if (
-			!req.body.Category ||
-			!req.body.name ||
-			!req.body.description ||
-			!req.body["additional-name"] ||
-			!req.body.contacts
-		) {
-			return res.status(400).send({
-				message: "Please provide all the required fields",
-			});
-		}
-
-		const id = req.params.id;
-
-		const result = await equipmentModel.findByIdAndUpdate(id, req.body);
-
-		if (!result) {
-			return res.status(404).json({ message: "Asset not found!" });
-		} else {
-			return res.status(200).send({ message: "Asset successfully updated" });
-		}
+	  const id = req.params.id;
+	  const updatedFields = req.body;
+  
+	  // Find the asset by ID
+	  const asset = await equipmentModel.findById(id);
+  
+	  if (!asset) {
+		return res.status(404).json({ message: "Asset not found!" });
+	  }
+  
+	  // Update the asset fields with the new values
+	  Object.keys(updatedFields).forEach((key) => {
+		asset[key] = updatedFields[key];
+	  });
+  
+	  // Save the updated asset
+	  const updatedAsset = await asset.save();
+  
+	  return res.status(200).send(updatedAsset);
 	} catch (error) {
-		console.log(error.message);
-		res.status(500).send({ message: error.message });
+	  console.log(error.message);
+	  res.status(500).send({ message: error.message });
 	}
-});
+  });
 
 // Delete a specific asset with ID
 equipmentRouter.delete("/:id", async (req, res) => {

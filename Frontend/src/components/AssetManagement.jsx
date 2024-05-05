@@ -23,7 +23,8 @@ function AssetManagement() {
 			location: asset['additional-name'],
 			quantity: asset['coded-in'],
 		  }));
-		  setFilteredAssets(assets); // Optionally, update filteredAssets state as well
+		  setAssets(data)
+		  setFilteredAssets(data); // Optionally, update filteredAssets state as well
 	  })
 	  .catch((error) => console.error("Error fetching data:", error));
   }, []);
@@ -37,30 +38,76 @@ function AssetManagement() {
 //   }, []);
 
   const handleAddAsset = (newAsset) => {
-    setAssets([...assets, newAsset]);
-    localStorage.setItem("assets", JSON.stringify([...assets, newAsset]));
+    // setAssets([...assets, newAsset]);
+    // localStorage.setItem("assets", JSON.stringify([...assets, newAsset]));
   };
 
-  const handleEditAsset = (index) => {
-    setEditIndex(index);
-    setEditedAsset(assets[index]);
-    setShowEditModal(true);
+  const handleEditAsset = (asset) => {
+	const editedAssetCopy = {
+	  ...asset,
+	  assetName: asset.name,
+	  location: asset["additional-name"],
+	  quantity: asset["coded-in"],
+	};
+	setEditedAsset(editedAssetCopy);
+	setShowEditModal(true);
   };
 
   const handleSaveEdit = () => {
-    const updatedAssets = [...assets];
-    updatedAssets[editIndex] = editedAsset;
-    setAssets(updatedAssets);
-    setEditIndex(null);
-    setEditedAsset({});
-    localStorage.setItem("assets", JSON.stringify(updatedAssets));
-    setShowEditModal(false);
+	const updatedAsset = {
+		name: editedAsset.assetName,
+		"additional-name": editedAsset.location,
+		"coded-in": editedAsset.quantity
+		// Add any other properties required by the server
+	  };
+	fetch(`http://localhost:5555/Assets/equipments/${editedAsset._id}`, {
+	  method: "PUT",
+	  headers: {
+		"Content-Type": "application/json",
+	  },
+	  body: JSON.stringify(updatedAsset),
+	})
+	  .then((response) => {
+		if (response.ok) {
+		  // Update the assets and filteredAssets state with the edited asset
+		  const updatedAssets = assets.map((asset) =>
+			asset._id === editedAsset._id ? editedAsset : asset
+		  );
+		  setAssets(updatedAssets);
+		  setFilteredAssets(updatedAssets);
+		  setShowEditModal(false);
+		  window.alert("Asset successfully updated");
+		  window.location.reload();
+		} else {
+		  console.error("Failed to update asset");
+		}
+	  })
+	  .catch((error) => {
+		console.error("Error updating asset:", error);
+		window.alert("Failed to update asset");
+	  }
+		);
   };
 
-  const handleDeleteAsset = (index) => {
-    const updatedAssets = assets.filter((_, i) => i !== index);
-    setAssets(updatedAssets);
-    localStorage.setItem("assets", JSON.stringify(updatedAssets));
+  const handleDeleteAsset = (id) => {
+	console.log("delete",id)
+    fetch(`http://localhost:5555/Assets/equipments/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+		console.log("response", response.status)
+        const updatedAssets = assets.filter((asset) => asset.id !== id);
+      	setAssets(updatedAssets);
+      	setFilteredAssets(updatedAssets);
+		window.alert("Asset successfully deleted");
+		window.location.reload();
+	})
+      .catch((error) => {
+		console.error("Error deleting asset:", error)
+		window.alert("Failed to delete asset");
+	  }
+		);
+	 
   };
 
   const handleSearch = (searchText) => {
@@ -90,18 +137,18 @@ function AssetManagement() {
 							{filteredAssets.map((asset, index) => (
 								<tr key={index}>
 									<td>{index + 1}</td>
-									<td>{asset.assetName}</td>
-									<td>{asset.quantity}</td>
-									<td>{asset.location}</td>
+									<td>{asset.name}</td>
+									<td>{asset['additional-name']}</td>
+									<td>{asset['coded-in']}</td>
 									<td>
 										<div className="asset-actions">
 											<button
 												id="editbutton"
-												onClick={() => handleEditAsset(index)}
+												onClick={() => handleEditAsset(asset)}
 											>
 												Edit
 											</button>
-											<DeleteAsset onDelete={() => handleDeleteAsset(index)} />
+											<DeleteAsset onDelete={() => handleDeleteAsset(asset._id)} />
 										</div>
 									</td>
 								</tr>
