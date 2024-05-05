@@ -3,6 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import equipmentRouter from "./routes/equipment.js";
 import userRouter from "./routes/User.js";
+import publicationRouter from "./routes/publication.js"
 // import { equipmentModel } from "./models/equipmentAsset.js";
 import cors from "cors";
 
@@ -14,6 +15,7 @@ const app = express();
 
 app.use(express.json());
 
+app.use("/Assets/publications", publicationRouter);
 app.use("/Assets/equipments", equipmentRouter);
 app.use("/User", userRouter);
 
@@ -41,3 +43,5 @@ mongoose
 	.catch((err) => {
 		console.log(err);
 	});
+
+	export default app;
