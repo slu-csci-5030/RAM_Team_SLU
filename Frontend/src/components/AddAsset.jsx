@@ -39,7 +39,7 @@ function AddAsset({ onAdd }) {
 
   const handleAdditionalListChange = (e) => {
     const { value } = e.target;
-    setAsset({ ...asset, additionalList: value.split(",") }); // Split the input string into an array
+    setAsset({ ...asset, additionalList: value.split(",") }); 
   };
 
   return (
@@ -91,7 +91,7 @@ function AddAsset({ onAdd }) {
             <input
               type="text"
               placeholder="Additional List (comma-separated)"
-              value={asset.additionalList.join(",")} // Convert array to string
+              value={asset.additionalList.join(",")} 
               onChange={handleAdditionalListChange}
               className="add-asset-input"
               name="additionalList"
@@ -105,7 +105,6 @@ function AddAsset({ onAdd }) {
 
       <div className="assets-list">
         <h3>Assets List</h3>
-        {/* Render the assets list here */}
         <ul>
           {assetsList.map((item, index) => (
             <li key={index}>
