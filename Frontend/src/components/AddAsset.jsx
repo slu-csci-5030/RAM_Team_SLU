@@ -6,9 +6,14 @@ function AddAsset({ onAdd }) {
     assetName: "",
     location: "",
     quantity: "",
+    description: "",
+    // Add more fields
+    subtype: "",
+    startDate: "",
+    finishDate: ""
   });
   const [showModal, setShowModal] = useState(false);
-  const [assetsList, setAssetsList] = useState([]);
+  const [showAdditionalFields, setShowAdditionalFields] = useState(false); // State to control visibility of additional fields
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,12 +26,24 @@ function AddAsset({ onAdd }) {
       asset.location.trim() !== "" &&
       asset.quantity.trim() !== ""
     ) {
-      const newAssetsList = [...assetsList, asset];
-      setAssetsList(newAssetsList);
-      onAdd(asset); // You can remove this line if you don't need the parent to know about the new asset
-      setAsset({ assetName: "", location: "", quantity: "" });
-      setShowModal(false); // Close the modal after adding asset
+      const newAsset = { ...asset };
+      onAdd(newAsset);
+      setAsset({
+        assetName: "",
+        location: "",
+        quantity: "",
+        description: "",
+        // Reset additional fields
+        subtype: "",
+        startDate: "",
+        finishDate: ""
+      });
+      setShowModal(false);
     }
+  };
+
+  const handleAddFields = () => {
+    setShowAdditionalFields(true);
   };
 
   return (
@@ -68,24 +85,53 @@ function AddAsset({ onAdd }) {
               className="add-asset-input"
               name="quantity"
             />
+            {/* Add description input */}
+            <input
+              type="text"
+              placeholder="Description"
+              value={asset.description}
+              onChange={handleChange}
+              className="add-asset-input"
+              name="description"
+            />
+            {/* Additional fields */}
+            <button onClick={handleAddFields}>Add More Fields</button>
+            {showAdditionalFields && (
+              <>
+                <input
+                  type="text"
+                  placeholder="Subtype"
+                  value={asset.subtype}
+                  onChange={handleChange}
+                  className="add-asset-input"
+                  name="subtype"
+                />
+                <input
+                  type="text"
+                  placeholder="Start Date"
+                  value={asset.startDate}
+                  onChange={handleChange}
+                  className="add-asset-input"
+                  name="startDate"
+                />
+                <input
+                  type="text"
+                  placeholder="Finish Date"
+                  value={asset.finishDate}
+                  onChange={handleChange}
+                  className="add-asset-input"
+                  name="finishDate"
+                />
+              </>
+            )}
             <button id="submitbutton" onClick={handleAdd}>
               Submit
             </button>
           </div>
         </div>
       )}
-
-      <div className="assets-list">
-        <h3>Assets List</h3>
-        {/* <ul>
-          {assetsList.map((item, index) => (
-            <li key={index}>
-              {item.assetName} - {item.location} - {item.quantity}
-            </li>
-          ))}
-        </ul> */}
-      </div>
     </>
   );
 }
+
 export default AddAsset;
