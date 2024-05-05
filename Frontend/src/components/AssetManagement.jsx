@@ -12,14 +12,29 @@ function AssetManagement() {
   const [showEditModal, setShowEditModal] = useState(false);
 
   const [filteredAssets, setFilteredAssets] = useState([]);
-
+  
   useEffect(() => {
-	const storedAssets = localStorage.getItem("assets");
-	if (storedAssets) {
-		setAssets(JSON.parse(storedAssets));
-		setFilteredAssets(JSON.parse(storedAssets));
-	}
+	fetch("http://localhost:5555/Assets/equipments/", { method: "GET" })
+	  .then((response) => response.json())
+	  .then((data) => {
+		console.log(data);
+		const assets = data.map(asset => ({
+			assetName: asset.name,
+			location: asset['additional-name'],
+			quantity: asset['coded-in'],
+		  }));
+		  setFilteredAssets(assets); // Optionally, update filteredAssets state as well
+	  })
+	  .catch((error) => console.error("Error fetching data:", error));
   }, []);
+  
+//   useEffect(() => {
+// 	const storedAssets = localStorage.getItem("assets");
+// 	if (storedAssets) {
+// 		setAssets(JSON.parse(storedAssets));
+// 		setFilteredAssets(JSON.parse(storedAssets));
+// 	}
+//   }, []);
 
   const handleAddAsset = (newAsset) => {
     setAssets([...assets, newAsset]);
