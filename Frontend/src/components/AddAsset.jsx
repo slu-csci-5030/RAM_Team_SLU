@@ -78,7 +78,7 @@ function AddAsset({ onAdd }) {
                 className="add-asset-select"
                 name="availableForUse"
               >
-                <option value="">Select Available For Use</option>
+                <option value="">Available For Use</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
               </select>
@@ -88,7 +88,7 @@ function AddAsset({ onAdd }) {
                 className="add-asset-select"
                 name="feeForService"
               >
-                <option value="">Select Fee For Service</option>
+                <option value="">Fee For Service</option>
                 <option value="Free">Free</option>
                 <option value="Fees apply">Fees apply</option>
               </select>
