@@ -9,6 +9,23 @@
 
 .add-asset-input {
 	margin-right: 10px;
+    display: inline-block; /* Ensure inputs are inline-block */
+    padding: 10px 15px; /* Adjust padding for consistent height */
+    font-size: 16px; /* Adjust font size for consistent height */
+    border-radius: 0;
+    -webkit-appearance: none;
+    border: 1px solid lightgray; /* Apply a border to all inputs for consistency */
+}
+
+/* Firefox Fix */
+.add-asset-input::-moz-focus-inner { 
+    border: 0;
+}
+
+/* Safari Fix */
+.add-asset-input {
+    -webkit-appearance: none;
+    border-radius: 0;
 }
 
 .add-asset-button {
