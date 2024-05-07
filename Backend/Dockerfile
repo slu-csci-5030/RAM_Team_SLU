@@ -5,16 +5,13 @@ RUN apk add --no-cache --virtual .build-deps python3 make g++
 
 WORKDIR /app
 
-# Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install dependencies
 RUN npm install
 
 # Install bcrypt from source
 RUN npm rebuild bcrypt --build-from-source
 
-# Copy the application code
 COPY . .
 
 # Clean up build dependencies
