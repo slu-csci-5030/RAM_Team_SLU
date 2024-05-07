@@ -1,0 +1,26 @@
+[
+    {
+      "name": "frontend-container",
+      "image": "ram_team_slu-frontend",
+      "portMappings": [
+        {
+          "containerPort": 5173,
+          "hostPort": 5173
+        }
+      ],
+      "essential": true,
+      "entryPoint": [
+        "sh",
+        "-c",
+        "npm run dev -- --host"
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/frontend-task",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]

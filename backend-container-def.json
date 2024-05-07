@@ -1,0 +1,26 @@
+[
+    {
+      "name": "backend-container",
+      "image": "ram_team_slu-backend",
+      "portMappings": [
+        {
+          "containerPort": 5555,
+          "hostPort": 5555
+        }
+      ],
+      "essential": true,
+      "entryPoint": [
+        "sh",
+        "-c",
+        "npm start"
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/backend-task",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
