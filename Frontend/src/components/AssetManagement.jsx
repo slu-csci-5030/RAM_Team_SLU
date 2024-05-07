@@ -14,7 +14,7 @@ function AssetManagement() {
   const [filteredAssets, setFilteredAssets] = useState([]);
   
   useEffect(() => {
-	fetch("http://localhost:5555/Assets/equipments/", { method: "GET" })
+	fetch("http://localhost:85/Assets/equipments/", { method: "GET" })
 	  .then((response) => response.json())
 	  .then((data) => {
 		console.log(data);
