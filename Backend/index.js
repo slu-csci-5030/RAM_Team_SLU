@@ -11,20 +11,16 @@ const app = express();
 // app.use((req, res, next) => {
 // 	res.status(503).send({ message: "Site Under maintainance!" });
 // });
-
-app.use(
-	cors({
-		origin: "http://localhost:5173",
-		methods: ["GET", "POST", "PUT", "DELETE"],
-		allowedHeaders: ["Content-Type"],
-	})
-);
+app.use(cors({
+	origin: "http://localhost",
+	methods: ["GET", "POST", "PUT", "DELETE"],
+	allowedHeaders: ["Content-Type"],
+}));
 
 app.use(express.json());
 
 app.use("/Assets/equipments", equipmentRouter);
 app.use("/User", userRouter);
-
 
 app.get("/", (req, res) => {
 	return res.status(200).send("<h1>Hello, RAM Team!</h1>");
