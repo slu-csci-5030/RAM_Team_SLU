@@ -32,18 +32,17 @@ jobs:
           cd Backend
           npm install
 
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: javascript, jsx
+
       - name: Check CodeQL bundle versions
         run: |
           echo "Available CodeQL bundles:"
           codeql-bundle list
           echo "Updating CodeQL bundles to the latest versions..."
           codeql-bundle update
-
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
-        with:
-          languages: javascript, jsx
-          debug: true
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v2
