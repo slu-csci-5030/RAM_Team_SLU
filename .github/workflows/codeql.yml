@@ -17,11 +17,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install Frontend dependencies
+        run: |
+          cd Frontend
+          npm install
 
-      - name: Build project
-        run: npm run build
+      - name: Build Frontend
+        run: |
+          cd Frontend
+          npm run build
+
+      - name: Install Backend dependencies
+        run: |
+          cd Backend
+          npm install
 
       - name: Check CodeQL bundle versions
         run: |
