@@ -3,7 +3,7 @@ FROM node:lts-alpine
 # Install build tools and dependencies
 RUN apk add --no-cache --virtual .build-deps python3 make g++
 
-WORKDIR /app
+WORKDIR /usr/src/app/backend
 
 COPY package*.json ./
 

@@ -1,8 +1,7 @@
 FROM node:lts-alpine
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/frontend
 COPY package*.json ./
 RUN npm install
 COPY . .
-EXPOSE 5173
 
 CMD [ "npm", "run", "dev" ]
