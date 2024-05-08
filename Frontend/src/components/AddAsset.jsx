@@ -6,6 +6,9 @@ function AddAsset({ onAdd }) {
     assetName: "",
     location: "",
     quantity: "",
+    inventoryNumber: "",
+    startDate: "",
+    finishDate: ""
   });
   const [showModal, setShowModal] = useState(false);
   const [assetsList, setAssetsList] = useState([]);
@@ -19,7 +22,10 @@ function AddAsset({ onAdd }) {
     if (
       asset.assetName.trim() !== "" &&
       asset.location.trim() !== "" &&
-      asset.quantity.trim() !== ""
+      asset.quantity.trim() !== "" &&
+      asset.inventoryNumber.trim() !== "" &&
+      asset.startDate.trim() !== "" &&
+      asset.finishDate.trim() !== "" 
     ) {
       const newAssetsList = [...assetsList, asset];
       setAssetsList(newAssetsList);
@@ -67,6 +73,32 @@ function AddAsset({ onAdd }) {
               onChange={handleChange}
               className="add-asset-input"
               name="quantity"
+            />
+            <input
+              type="text"
+              placeholder="inventory-number"
+              value={asset.inventoryNumber}
+              onChange={handleChange}
+              className="add-asset-input"
+              name="inventory-number"
+            />
+            <label htmlFor="startDate">StartDate</label><br />
+            <input
+              type="date"
+              placeholder="start-date"
+              value={asset.startDate}
+              onChange={handleChange}
+              className="add-asset-input"
+              name="start-date"
+            /> <br />
+            <label htmlFor="finishDate">Finish Date</label><br />
+            <input
+              type="date"
+              placeholder="finish-date"
+              value={asset.finishDate}
+              onChange={handleChange}
+              className="add-asset-input"
+              name="finish-date"
             />
             <button id="submitbutton" onClick={handleAdd}>
               Submit
