@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../assets/Styles/AddAsset.css";
 
 function AddAsset({ onAdd }) {
+  console.log("1");
   const [asset, setAsset] = useState({
     assetName: "",
     location: "",
@@ -11,11 +12,13 @@ function AddAsset({ onAdd }) {
   const [assetsList, setAssetsList] = useState([]);
 
   const handleChange = (e) => {
+    console.log("each element update");
     const { name, value } = e.target;
     setAsset({ ...asset, [name]: value });
   };
 
   const handleAdd = () => {
+    console.log("add");
     if (
       asset.assetName.trim() !== "" &&
       asset.location.trim() !== "" &&
@@ -23,6 +26,7 @@ function AddAsset({ onAdd }) {
     ) {
       const newAssetsList = [...assetsList, asset];
       setAssetsList(newAssetsList);
+      console.log("test1:", newAssetsList);
       onAdd(asset); // You can remove this line if you don't need the parent to know about the new asset
       setAsset({ assetName: "", location: "", quantity: "" });
       setShowModal(false); // Close the modal after adding asset
