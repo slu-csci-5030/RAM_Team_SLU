@@ -1,109 +1,68 @@
+// AssetManagement.jsx
+
 import React, { useState, useEffect } from "react";
 import AddAsset from "./AddAsset";
-import DeleteAsset from "./DeleteAsset";
-import EditAsset from "./EditAsset";
-import UniversalSearch from "./UniversalSearch";
 import "../assets/Styles/AssetManagement.css";
 
 function AssetManagement() {
   const [assets, setAssets] = useState([]);
-  const [editIndex, setEditIndex] = useState(null);
-  const [editedAsset, setEditedAsset] = useState({});
-  const [showEditModal, setShowEditModal] = useState(false);
-
-  const [filteredAssets, setFilteredAssets] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [assetsPerPage] = useState(10);
 
   useEffect(() => {
-	const storedAssets = localStorage.getItem("assets");
-	if (storedAssets) {
-		setAssets(JSON.parse(storedAssets));
-		setFilteredAssets(JSON.parse(storedAssets));
-	}
+    // Fetch assets from API
+    // Update 'assets' state with fetched data
   }, []);
 
-  const handleAddAsset = (newAsset) => {
-    setAssets([...assets, newAsset]);
-    localStorage.setItem("assets", JSON.stringify([...assets, newAsset]));
-  };
+  // Calculate index of the last asset on current page
+  const indexOfLastAsset = currentPage * assetsPerPage;
+  // Calculate index of the first asset on current page
+  const indexOfFirstAsset = indexOfLastAsset - assetsPerPage;
+  // Get current assets to display on current page
+  const currentAssets = assets.slice(indexOfFirstAsset, indexOfLastAsset);
 
-  const handleEditAsset = (index) => {
-    setEditIndex(index);
-    setEditedAsset(assets[index]);
-    setShowEditModal(true);
-  };
-
-  const handleSaveEdit = () => {
-    const updatedAssets = [...assets];
-    updatedAssets[editIndex] = editedAsset;
-    setAssets(updatedAssets);
-    setEditIndex(null);
-    setEditedAsset({});
-    localStorage.setItem("assets", JSON.stringify(updatedAssets));
-    setShowEditModal(false);
-  };
-
-  const handleDeleteAsset = (index) => {
-    const updatedAssets = assets.filter((_, i) => i !== index);
-    setAssets(updatedAssets);
-    localStorage.setItem("assets", JSON.stringify(updatedAssets));
-  };
-
-  const handleSearch = (searchText) => {
-	const filteredAssets = assets.filter(asset =>
-	  asset.assetName.toLowerCase().includes(searchText.toLowerCase())
-	);
-	setFilteredAssets(filteredAssets);
-  };
-  
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div>
-      <UniversalSearch onSearch={handleSearch} />
-      <AddAsset onAdd={handleAddAsset} />
-      <div className="asset-table-container">
-	  <table className="asset-table">
-						<thead>
-							<tr>
-								<th>Serial No</th>
-								<th>Asset Name</th>
-								<th>Quantity</th>
-								<th>Location</th>
-								<th>Options</th>
-							</tr>
-						</thead>
-						<tbody>
-							{filteredAssets.map((asset, index) => (
-								<tr key={index}>
-									<td>{index + 1}</td>
-									<td>{asset.assetName}</td>
-									<td>{asset.quantity}</td>
-									<td>{asset.location}</td>
-									<td>
-										<div className="asset-actions">
-											<button
-												id="editbutton"
-												onClick={() => handleEditAsset(index)}
-											>
-												Edit
-											</button>
-											<DeleteAsset onDelete={() => handleDeleteAsset(index)} />
-										</div>
-									</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
-
-					{showEditModal && (
-						<EditAsset
-							asset={editedAsset}
-							onEdit={setEditedAsset}
-							onSave={handleSaveEdit}
-						/>
-					)}
-      </div>
+      {/* Asset list rendering */}
+      <ul className="asset-list">
+        {currentAssets.map((asset) => (
+          <li key={asset.id}>{asset.name}</li>
+        ))}
+      </ul>
+      {/* Pagination */}
+      <Pagination
+        itemsPerPage={assetsPerPage}
+        totalItems={assets.length}
+        paginate={paginate}
+      />
     </div>
   );
 }
 
 export default AssetManagement;
+
+// Pagination component
+const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  return (
+    <nav>
+      <ul className="pagination">
+        {pageNumbers.map((number) => (
+          <li key={number} className="page-item">
+            <a onClick={() => paginate(number)} href="#" className="page-link">
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
