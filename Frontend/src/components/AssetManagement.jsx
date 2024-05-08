@@ -14,7 +14,7 @@ function AssetManagement() {
   const [filteredAssets, setFilteredAssets] = useState([]);
   
   useEffect(() => {
-	fetch("http://localhost:5555/Assets/equipments/", { method: "GET" })
+	fetch("http://localhost:85/Assets/equipments/", { method: "GET" })
 	  .then((response) => response.json())
 	  .then((data) => {
 		console.log(data);
@@ -27,18 +27,26 @@ function AssetManagement() {
 	  })
 	  .catch((error) => console.error("Error fetching data:", error));
   }, []);
-  
-//   useEffect(() => {
-// 	const storedAssets = localStorage.getItem("assets");
-// 	if (storedAssets) {
-// 		setAssets(JSON.parse(storedAssets));
-// 		setFilteredAssets(JSON.parse(storedAssets));
-// 	}
-//   }, []);
 
   const handleAddAsset = (newAsset) => {
-    setAssets([...assets, newAsset]);
-    localStorage.setItem("assets", JSON.stringify([...assets, newAsset]));
+	// Update the local state with the new asset
+	setAssets([...assets, newAsset]);
+	localStorage.setItem("assets", JSON.stringify([...assets, newAsset]));
+
+	// Fetch the updated list of assets from the server
+	fetch("http://localhost:85/Assets/equipments/", { method: "GET" })
+		.then((response) => response.json())
+		.then((data) => {
+		const updatedAssets = data.map(asset => ({
+			assetName: asset.name,
+			location: asset.location,
+			quantity: asset.quantity,
+			assetId: asset._id,
+		}));
+		setAssets(updatedAssets); // Update the assets state with the fetched data
+		setFilteredAssets(updatedAssets); // Optionally, update filteredAssets state as well
+		})
+		.catch((error) => console.error("Error fetching data:", error));
   };
 
   const handleEditAsset = (index) => {

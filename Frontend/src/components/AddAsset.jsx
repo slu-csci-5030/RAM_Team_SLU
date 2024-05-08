@@ -1,32 +1,46 @@
 import React, { useState } from "react";
 import "../assets/Styles/AddAsset.css";
+import axios from "axios"; // Import Axios
 
 function AddAsset({ onAdd }) {
   const [asset, setAsset] = useState({
-    assetName: "",
-    location: "",
-    quantity: "",
+     assetName: "",
+     location: "",
+     quantity: "",
   });
   const [showModal, setShowModal] = useState(false);
   const [assetsList, setAssetsList] = useState([]);
-
+ 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setAsset({ ...asset, [name]: value });
+     const { name, value } = e.target;
+     setAsset({ ...asset, [name]: value });
   };
 
-  const handleAdd = () => {
-    if (
-      asset.assetName.trim() !== "" &&
-      asset.location.trim() !== "" &&
-      asset.quantity.trim() !== ""
-    ) {
-      const newAssetsList = [...assetsList, asset];
-      setAssetsList(newAssetsList);
-      onAdd(asset); // You can remove this line if you don't need the parent to know about the new asset
-      setAsset({ assetName: "", location: "", quantity: "" });
-      setShowModal(false); // Close the modal after adding asset
-    }
+  const handleAdd = async () => {
+     if (
+       asset.assetName.trim() !== "" &&
+       asset.location.trim() !== "" &&
+       asset.quantity.trim() !== ""
+     ) {
+       try {
+         const response = await axios.post('http://localhost:85/Assets/equipments', {
+           Category: 'Database',
+           name: asset.assetName,
+           description: 'Asset description', 
+           "additional-name": asset.location, 
+           "coded-in": asset.quantity, 
+           contacts: 'Person 1', 
+         });
+ 
+         console.log('New asset added:', response.data);
+ 
+         // Update your state here if needed
+         setAsset({ assetName: "", location: "", quantity: "" });
+         setShowModal(false); // Close the modal after adding asset
+       } catch (error) {
+         console.error('There was a problem while adding asset:', error);
+       }
+     }
   };
 
   return (

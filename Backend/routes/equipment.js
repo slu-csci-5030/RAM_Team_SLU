@@ -36,7 +36,7 @@ equipmentRouter.post("/", async (req, res) => {
 // Get all the assets in DB
 equipmentRouter.get("/", async (req, res) => {
 	try {
-		res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+		res.setHeader('Access-Control-Allow-Origin', '*');
 		console.log("Entered in red zone");
 		const assets = await equipmentModel.find({});
 		// return res.status(200).json({
