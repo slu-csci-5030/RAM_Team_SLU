@@ -17,6 +17,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: javascript
+
       - name: Install Frontend dependencies
         run: |
           cd Frontend
@@ -31,11 +36,6 @@ jobs:
         run: |
           cd Backend
           npm install
-
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
-        with:
-          languages: javascript
 
       - name: Check CodeQL bundle versions
         run: |
