@@ -68,7 +68,7 @@ function AssetManagement() {
 		"coded-in": editedAsset.quantity
 		// Add any other properties required by the server
 	  };
-	fetch(`http://localhost:5555/Assets/equipments/${editedAsset._id}`, {
+	fetch(`http://localhost:85/Assets/equipments/${editedAsset._id}`, {
 	  method: "PUT",
 	  headers: {
 		"Content-Type": "application/json",
@@ -99,7 +99,7 @@ function AssetManagement() {
 
   const handleDeleteAsset = (id) => {
 	console.log("delete",id)
-    fetch(`http://localhost:5555/Assets/equipments/${id}`, {
+    fetch(`http://localhost:85/Assets/equipments/${id}`, {
       method: "DELETE",
     })
       .then((response) => {
