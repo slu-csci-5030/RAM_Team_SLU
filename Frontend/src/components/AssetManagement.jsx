@@ -12,7 +12,16 @@ function AssetManagement() {
   useEffect(() => {
     // Fetch assets from API
     // Update 'assets' state with fetched data
+
   }, []);
+  
+//   useEffect(() => {
+// 	const storedAssets = localStorage.getItem("assets");
+// 	if (storedAssets) {
+// 		setAssets(JSON.parse(storedAssets));
+// 		setFilteredAssets(JSON.parse(storedAssets));
+// 	}
+//   }, []);
 
   // Calculate index of the last asset on current page
   const indexOfLastAsset = currentPage * assetsPerPage;
