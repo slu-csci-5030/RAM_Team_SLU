@@ -4,7 +4,10 @@ import '../assets/Styles/EditAsset.css';
 function EditAsset({ asset, onEdit, onSave }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
-    onEdit({ ...asset, [name]: value });
+    onEdit((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   return (
