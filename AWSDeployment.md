@@ -27,7 +27,7 @@ server {
     listen [::]:80 default_server;
     root /var/www/react-app;
     index index.html;
-    server_name 18.118.99.147;
+    server_name 18.220.54.65;
     location / {
         try_files $uri $uri/ /index.html;
     }
@@ -40,7 +40,7 @@ server {
     sudo systemctl restart nginx
 8. Then we started the react-vite app using:
     sudo npm run dev
-9. vite app was successfully running and was accessible at http://18.118.99.147/
+9. vite app was successfully running and was accessible at http://18.220.54.65/
 
 For Backend:
 1. Steps 1-2 same as for frontend
