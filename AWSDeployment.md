@@ -5,11 +5,11 @@ We have deployed our Research Asset Management application on a AWS EC2 Ubuntu i
 
 ### Frontend
 
-- **URL**: http://18.118.99.147/
+- **URL**: http://18.220.54.65/loggedIn
 
 ### Backend
 
-- **URL**: http://18.118.99.147:85
+- **URL**: http://18.220.54.65:85
 
 Here are the steps followed for deployment:
 For Frontend:
@@ -50,7 +50,7 @@ For Backend:
 4. then node.js application was started using:
     node server.js
 5. Then port 85 has been configured on the ec2 instance
-6. Node.js application was successfully running and was accessible at http://18.118.99.147:85
+6. Node.js application was successfully running and was accessible at http://18.220.54.65:85
 
 
 
