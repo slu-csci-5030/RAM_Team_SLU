@@ -3,39 +3,39 @@
     top: 0;
     background: #003da5;
     height: 5rem;
+    overflow: hidden;
     z-index: 10;
     left: 0;
     width: 100%;
 }
- 
+
 .header__menu__wrap{
-    padding-right: 4rem;
-    padding-left: 4rem;
-    position: relative;
-    max-width: 80rem;
-    margin-right: auto;
-    margin-left: auto;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 0 4rem; 
+  max-width: 80rem;
+  height: 100%; 
+  margin: 0 auto; 
 }
- 
+
 .logo{
-    font-family: brandon-grotesque,sans-serif;
-    color: #fff;
-    font-size: 20px;
-    margin-top: 25px;
-    float: left;
+  font-family: brandon-grotesque,sans-serif;
+  color: #fff;
+  font-size: 20px;
 }
- 
+
 .header__menu__group{
-    position: relative;
     float: right;
     margin-top: 25px;
 }
- 
+
 .header__icon{
-    color: #fff;
-    font-size: 24px;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
 }
- 
+
 @keyframes MyDiv {
     0% {
       transform: translateX(0);
@@ -53,35 +53,3 @@
     animation: MyDiv 3s infinite ease-in;
     animation-direction: normal;
   }
-
-  .account-dropdown {
-    position: absolute;
-    top: 100%;
-    right: -16px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100px;
-    margin-top: 10px;
-    border-radius: 10px;
-    box-shadow: 0 3px 6px 0 rgba(0,0,0,.16);
-  }
-
-  .account-dropdown-triangle {
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #fff;
-    position: absolute;
-    top: -10px;
-    right: 16px;
-  }
-  
-  .account-dropdown-content {
-    text-align: center;
-  }
-  

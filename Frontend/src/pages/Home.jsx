@@ -1,18 +1,22 @@
-import React from 'react';
+
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import CompanyDescription from '../components/CompanyDescription';
+import { AuthContext } from "../components/AuthContext";
 
 function Home() {
   const history = useHistory();
+  const { login } = useContext(AuthContext);
 
   const handleLoginButtonClick = () => {
+    login();
     history.push('/loggedIn');
   };
 
   return (
-    <body>
+    <main>
       <CompanyDescription onLoginButtonClick={handleLoginButtonClick} />
-    </body>
+    </main>
   );
 }
 
