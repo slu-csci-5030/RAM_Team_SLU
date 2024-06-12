@@ -9,7 +9,7 @@ function Footer() {
       <div className="footer-content">
         <div className="footer-section about">
           <div className="about-logo">
-         
+            {/* Corrected line */}
             <img src={assetManagementImage} alt="Company Logo" />
           </div>
           <div className="about-description">
@@ -26,9 +26,11 @@ function Footer() {
         <div className="footer-section links">
           <h2>Quick Links</h2>
           <ul>
+            {/* Corrected line */}
             <li><a href="#">↑ Back to top</a></li>
-            <li><a href="https://www.slu.edu/" target="_blank" >SLU Homepage</a></li>
-            <li><a href="https://myslu.slu.edu/" target="_blank">mySLU</a></li>
+            {/* Corrected lines */}
+            <li><a href="https://www.slu.edu/" target="_blank" rel="noopener noreferrer">SLU Homepage</a></li>
+            <li><a href="https://myslu.slu.edu/" target="_blank" rel="noopener noreferrer">mySLU</a></li>
           </ul>
         </div>
       </div>
